@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Edit</title></head>
+<body>
+<h2>Edit qcm_test</h2>
+<form th:action='@{/qcm_test/update}' th:object='${qcm_test}' method='post'>
+id: <input type='text' th:field='*{id}'/><br/>
+candidature_id: <select th:field='*{candidature_id}'>
+<option th:each='item : ${candidatures}' th:value='${item.id}' th:text='${item}' th:selected='${item.id} == ${qcm_test.candidature_id.id}'></option>
+</select><br/>
+score: <input type='text' th:field='*{score}'/><br/>
+date_test: <input type='text' th:field='*{date_test}'/><br/>
+<button type='submit'>Mettre à jour</button></form></body></html>

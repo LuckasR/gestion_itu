@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer type_contrat</h2>
+<form th:action='@{/type_contrat/save}' th:object='${type_contrat}' method='post'>
+name: <input type='text' th:field='*{name}'/><br/>
+durre_contrat: <input type='text' th:field='*{durre_contrat}'/><br/>
+recurrence_renouvelement: <input type='text' th:field='*{recurrence_renouvelement}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Liste</title></head>
+<body>
+<h2>Liste de status_traitement</h2>
+<a th:href='@{/status_traitement/create}'>Créer</a>
+<table border='1'>
+<thead><tr>
+<th>id</th>
+<th>name</th>
+<th>Actions</th>
+</tr></thead>
+<tbody>
+<tr th:each='row : ${status_traitements}'>
+<td th:text='${row.id}'></td>
+<td th:text='${row.name}'></td>
+<td>
+<a th:href='@{/status_traitement/edit/{id}(id=${row.id})}'>Edit</a> | <a th:href='@{/status_traitement/delete/{id}(id=${row.id})}'>Delete</a>
+</td></tr>
+</tbody></table></body></html>

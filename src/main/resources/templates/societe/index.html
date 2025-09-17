@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Liste</title></head>
+<body>
+<h2>Liste de societe</h2>
+<a th:href='@{/societe/create}'>Créer</a>
+<table border='1'>
+<thead><tr>
+<th>id</th>
+<th>name</th>
+<th>nombre_qcm_test</th>
+<th>date_creation</th>
+<th>Actions</th>
+</tr></thead>
+<tbody>
+<tr th:each='row : ${societes}'>
+<td th:text='${row.id}'></td>
+<td th:text='${row.name}'></td>
+<td th:text='${row.nombre_qcm_test}'></td>
+<td th:text='${row.date_creation}'></td>
+<td>
+<a th:href='@{/societe/edit/{id}(id=${row.id})}'>Edit</a> | <a th:href='@{/societe/delete/{id}(id=${row.id})}'>Delete</a>
+</td></tr>
+</tbody></table></body></html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer employee</h2>
+<form th:action='@{/employee/save}' th:object='${employee}' method='post'>
+role_id: <select th:field='*{role}' th:object='${employee}'>
+<option th:each='item : ${roles}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+username: <input type='text' th:field='*{username}'/><br/>
+password: <input type='text' th:field='*{password}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

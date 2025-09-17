@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Liste</title></head>
+<body>
+<h2>Liste de annonce</h2>
+<a th:href='@{/annonce/create}'>Créer</a>
+<table border='1'>
+<thead><tr>
+<th>id</th>
+<th>title</th>
+<th>departement_id</th>
+<th>niveau_etude_id</th>
+<th>genre_id</th>
+<th>type_contrat_id</th>
+<th>description</th>
+<th>date_publication</th>
+<th>date_expiration</th>
+<th>status_id</th>
+<th>Actions</th>
+</tr></thead>
+<tbody>
+<tr th:each='row : ${annonces}'>
+<td th:text='${row.id}'></td>
+<td th:text='${row.title}'></td>
+<td th:text='${row.departement}'></td>
+<td th:text='${row.niveau_etude}'></td>
+<td th:text='${row.genre}'></td>
+<td th:text='${row.type_contrat}'></td>
+<td th:text='${row.description}'></td>
+<td th:text='${row.date_publication}'></td>
+<td th:text='${row.date_expiration}'></td>
+<td th:text='${row.status}'></td>
+<td>
+<a th:href='@{/annonce/edit/{id}(id=${row.id})}'>Edit</a> | <a th:href='@{/annonce/delete/{id}(id=${row.id})}'>Delete</a>
+</td></tr>
+</tbody></table></body></html>

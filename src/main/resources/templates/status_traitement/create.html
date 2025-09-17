@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer status_traitement</h2>
+<form th:action='@{/status_traitement/save}' th:object='${status_traitement}' method='post'>
+name: <input type='text' th:field='*{name}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

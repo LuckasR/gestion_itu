@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer planing_entretient</h2>
+<form th:action='@{/planing_entretient/save}' th:object='${planing_entretient}' method='post'>
+employee_id: <select th:field='*{employee}' th:object='${planing_entretient}'>
+<option th:each='item : ${employees}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+candidature_id: <select th:field='*{candidature}' th:object='${planing_entretient}'>
+<option th:each='item : ${candidatures}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+siege_entreprise_id: <select th:field='*{siege_entreprise}' th:object='${planing_entretient}'>
+<option th:each='item : ${siege_entreprises}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+date_entretient: <input type='text' th:field='*{date_entretient}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

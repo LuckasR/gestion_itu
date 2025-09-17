@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Liste</title></head>
+<body>
+<h2>Liste de qcm_question</h2>
+<a th:href='@{/qcm_question/create}'>Créer</a>
+<table border='1'>
+<thead><tr>
+<th>id</th>
+<th>departement_id</th>
+<th>question</th>
+<th>Actions</th>
+</tr></thead>
+<tbody>
+<tr th:each='row : ${qcm_questions}'>
+<td th:text='${row.id}'></td>
+<td th:text='${row.departement}'></td>
+<td th:text='${row.question}'></td>
+<td>
+<a th:href='@{/qcm_question/edit/{id}(id=${row.id})}'>Edit</a> | <a th:href='@{/qcm_question/delete/{id}(id=${row.id})}'>Delete</a>
+</td></tr>
+</tbody></table></body></html>

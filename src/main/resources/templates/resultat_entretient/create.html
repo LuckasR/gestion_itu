@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer resultat_entretient</h2>
+<form th:action='@{/resultat_entretient/save}' th:object='${resultat_entretient}' method='post'>
+employee_id: <select th:field='*{employee}' th:object='${resultat_entretient}'>
+<option th:each='item : ${employees}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+candidature_id: <select th:field='*{candidature}' th:object='${resultat_entretient}'>
+<option th:each='item : ${candidatures}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+pourcentage_satisfaction: <input type='text' th:field='*{pourcentage_satisfaction}'/><br/>
+date_resultat: <input type='text' th:field='*{date_resultat}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

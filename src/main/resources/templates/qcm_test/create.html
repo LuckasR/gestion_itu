@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer qcm_test</h2>
+<form th:action='@{/qcm_test/save}' th:object='${qcm_test}' method='post'>
+candidature_id: <select th:field='*{candidature}' th:object='${qcm_test}'>
+<option th:each='item : ${candidatures}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+score: <input type='text' th:field='*{score}'/><br/>
+date_test: <input type='text' th:field='*{date_test}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

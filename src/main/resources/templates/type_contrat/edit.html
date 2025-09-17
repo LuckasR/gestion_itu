@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Edit</title></head>
+<body>
+<h2>Edit type_contrat</h2>
+<form th:action='@{/type_contrat/update}' th:object='${type_contrat}' method='post'>
+id: <input type='text' th:field='*{id}'/><br/>
+name: <input type='text' th:field='*{name}'/><br/>
+durre_contrat: <input type='text' th:field='*{durre_contrat}'/><br/>
+recurrence_renouvelement: <input type='text' th:field='*{recurrence_renouvelement}'/><br/>
+<button type='submit'>Mettre à jour</button></form></body></html>

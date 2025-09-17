@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Edit</title></head>
+<body>
+<h2>Edit candidature</h2>
+<form th:action='@{/candidature/update}' th:object='${candidature}' method='post'>
+id: <input type='text' th:field='*{id}'/><br/>
+user_id: <select th:field='*{user_id}'>
+<option th:each='item : ${utilisateurs}' th:value='${item.id}' th:text='${item}' th:selected='${item.id} == ${candidature.user_id.id}'></option>
+</select><br/>
+annonce_id: <select th:field='*{annonce_id}'>
+<option th:each='item : ${annonces}' th:value='${item.id}' th:text='${item}' th:selected='${item.id} == ${candidature.annonce_id.id}'></option>
+</select><br/>
+date_candidature: <input type='text' th:field='*{date_candidature}'/><br/>
+status_traitement_id: <select th:field='*{status_traitement_id}'>
+<option th:each='item : ${status_traitements}' th:value='${item.id}' th:text='${item}' th:selected='${item.id} == ${candidature.status_traitement_id.id}'></option>
+</select><br/>
+<button type='submit'>Mettre à jour</button></form></body></html>

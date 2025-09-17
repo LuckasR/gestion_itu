@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Liste</title></head>
+<body>
+<h2>Liste de niveau_etude</h2>
+<a th:href='@{/niveau_etude/create}'>Créer</a>
+<table border='1'>
+<thead><tr>
+<th>id</th>
+<th>name</th>
+<th>Actions</th>
+</tr></thead>
+<tbody>
+<tr th:each='row : ${niveau_etudes}'>
+<td th:text='${row.id}'></td>
+<td th:text='${row.name}'></td>
+<td>
+<a th:href='@{/niveau_etude/edit/{id}(id=${row.id})}'>Edit</a> | <a th:href='@{/niveau_etude/delete/{id}(id=${row.id})}'>Delete</a>
+</td></tr>
+</tbody></table></body></html>

@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Edit</title></head>
+<body>
+<h2>Edit organisme_social</h2>
+<form th:action='@{/organisme_social/update}' th:object='${organisme_social}' method='post'>
+id: <input type='text' th:field='*{id}'/><br/>
+name: <input type='text' th:field='*{name}'/><br/>
+pourcentage: <input type='text' th:field='*{pourcentage}'/><br/>
+<button type='submit'>Mettre à jour</button></form></body></html>

@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer role</h2>
+<form th:action='@{/role/save}' th:object='${role}' method='post'>
+name: <input type='text' th:field='*{name}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

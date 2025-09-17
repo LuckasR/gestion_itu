@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer scoring_candidature</h2>
+<form th:action='@{/scoring_candidature/save}' th:object='${scoring_candidature}' method='post'>
+candidature_id: <select th:field='*{candidature}' th:object='${scoring_candidature}'>
+<option th:each='item : ${candidatures}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+pourcentage_embauche: <input type='text' th:field='*{pourcentage_embauche}'/><br/>
+date_resultat: <input type='text' th:field='*{date_resultat}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

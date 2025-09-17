@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer utilisateur</h2>
+<form th:action='@{/utilisateur/save}' th:object='${utilisateur}' method='post'>
+username: <input type='text' th:field='*{username}'/><br/>
+password: <input type='text' th:field='*{password}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

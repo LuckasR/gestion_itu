@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Liste</title></head>
+<body>
+<h2>Liste de organisme_social</h2>
+<a th:href='@{/organisme_social/create}'>Créer</a>
+<table border='1'>
+<thead><tr>
+<th>id</th>
+<th>name</th>
+<th>pourcentage</th>
+<th>Actions</th>
+</tr></thead>
+<tbody>
+<tr th:each='row : ${organisme_socials}'>
+<td th:text='${row.id}'></td>
+<td th:text='${row.name}'></td>
+<td th:text='${row.pourcentage}'></td>
+<td>
+<a th:href='@{/organisme_social/edit/{id}(id=${row.id})}'>Edit</a> | <a th:href='@{/organisme_social/delete/{id}(id=${row.id})}'>Delete</a>
+</td></tr>
+</tbody></table></body></html>

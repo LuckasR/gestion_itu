@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer siege_entreprise</h2>
+<form th:action='@{/siege_entreprise/save}' th:object='${siege_entreprise}' method='post'>
+name: <input type='text' th:field='*{name}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

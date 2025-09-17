@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Edit</title></head>
+<body>
+<h2>Edit annonce</h2>
+<form th:action='@{/annonce/update}' th:object='${annonce}' method='post'>
+id: <input type='text' th:field='*{id}'/><br/>
+title: <input type='text' th:field='*{title}'/><br/>
+departement_id: <select th:field='*{departement_id}'>
+<option th:each='item : ${departements}' th:value='${item.id}' th:text='${item}' th:selected='${item.id} == ${annonce.departement_id.id}'></option>
+</select><br/>
+niveau_etude_id: <select th:field='*{niveau_etude_id}'>
+<option th:each='item : ${niveau_etudes}' th:value='${item.id}' th:text='${item}' th:selected='${item.id} == ${annonce.niveau_etude_id.id}'></option>
+</select><br/>
+genre_id: <select th:field='*{genre_id}'>
+<option th:each='item : ${genres}' th:value='${item.id}' th:text='${item}' th:selected='${item.id} == ${annonce.genre_id.id}'></option>
+</select><br/>
+type_contrat_id: <select th:field='*{type_contrat_id}'>
+<option th:each='item : ${type_contrats}' th:value='${item.id}' th:text='${item}' th:selected='${item.id} == ${annonce.type_contrat_id.id}'></option>
+</select><br/>
+description: <input type='text' th:field='*{description}'/><br/>
+date_publication: <input type='text' th:field='*{date_publication}'/><br/>
+date_expiration: <input type='text' th:field='*{date_expiration}'/><br/>
+status_id: <select th:field='*{status_id}'>
+<option th:each='item : ${statuss}' th:value='${item.id}' th:text='${item}' th:selected='${item.id} == ${annonce.status_id.id}'></option>
+</select><br/>
+<button type='submit'>Mettre à jour</button></form></body></html>

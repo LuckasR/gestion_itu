@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer qcm_question</h2>
+<form th:action='@{/qcm_question/save}' th:object='${qcm_question}' method='post'>
+departement_id: <select th:field='*{departement}' th:object='${qcm_question}'>
+<option th:each='item : ${departements}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+question: <input type='text' th:field='*{question}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

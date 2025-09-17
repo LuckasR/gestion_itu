@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Liste</title></head>
+<body>
+<h2>Liste de scoring_candidature</h2>
+<a th:href='@{/scoring_candidature/create}'>Créer</a>
+<table border='1'>
+<thead><tr>
+<th>id</th>
+<th>candidature_id</th>
+<th>pourcentage_embauche</th>
+<th>date_resultat</th>
+<th>Actions</th>
+</tr></thead>
+<tbody>
+<tr th:each='row : ${scoring_candidatures}'>
+<td th:text='${row.id}'></td>
+<td th:text='${row.candidature}'></td>
+<td th:text='${row.pourcentage_embauche}'></td>
+<td th:text='${row.date_resultat}'></td>
+<td>
+<a th:href='@{/scoring_candidature/edit/{id}(id=${row.id})}'>Edit</a> | <a th:href='@{/scoring_candidature/delete/{id}(id=${row.id})}'>Delete</a>
+</td></tr>
+</tbody></table></body></html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Edit</title></head>
+<body>
+<h2>Edit employee</h2>
+<form th:action='@{/employee/update}' th:object='${employee}' method='post'>
+id: <input type='text' th:field='*{id}'/><br/>
+role_id: <select th:field='*{role_id}'>
+<option th:each='item : ${roles}' th:value='${item.id}' th:text='${item}' th:selected='${item.id} == ${employee.role_id.id}'></option>
+</select><br/>
+username: <input type='text' th:field='*{username}'/><br/>
+password: <input type='text' th:field='*{password}'/><br/>
+<button type='submit'>Mettre à jour</button></form></body></html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer contrat_employee</h2>
+<form th:action='@{/contrat_employee/save}' th:object='${contrat_employee}' method='post'>
+admin_id: <select th:field='*{admin}' th:object='${contrat_employee}'>
+<option th:each='item : ${admins}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+employee_id: <select th:field='*{employee}' th:object='${contrat_employee}'>
+<option th:each='item : ${employees}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+contrat_id: <select th:field='*{type_contrat}' th:object='${contrat_employee}'>
+<option th:each='item : ${type_contrats}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+date_debut_contrat: <input type='text' th:field='*{date_debut_contrat}'/><br/>
+date_fin_contrat: <input type='text' th:field='*{date_fin_contrat}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

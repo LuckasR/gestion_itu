@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Edit</title></head>
+<body>
+<h2>Edit societe</h2>
+<form th:action='@{/societe/update}' th:object='${societe}' method='post'>
+id: <input type='text' th:field='*{id}'/><br/>
+name: <input type='text' th:field='*{name}'/><br/>
+nombre_qcm_test: <input type='text' th:field='*{nombre_qcm_test}'/><br/>
+date_creation: <input type='text' th:field='*{date_creation}'/><br/>
+<button type='submit'>Mettre à jour</button></form></body></html>

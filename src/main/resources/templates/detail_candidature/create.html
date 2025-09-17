@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer detail_candidature</h2>
+<form th:action='@{/detail_candidature/save}' th:object='${detail_candidature}' method='post'>
+candidature_id: <select th:field='*{candidature}' th:object='${detail_candidature}'>
+<option th:each='item : ${candidatures}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+genre_id: <select th:field='*{genre}' th:object='${detail_candidature}'>
+<option th:each='item : ${genres}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+duree_experience: <input type='text' th:field='*{duree_experience}'/><br/>
+skills: <input type='text' th:field='*{skills}'/><br/>
+motivation: <input type='text' th:field='*{motivation}'/><br/>
+experience_professionnelle: <input type='text' th:field='*{experience_professionnelle}'/><br/>
+address: <input type='text' th:field='*{address}'/><br/>
+cv: <input type='text' th:field='*{cv}'/><br/>
+lm: <input type='text' th:field='*{lm}'/><br/>
+cin: <input type='text' th:field='*{cin}'/><br/>
+residence: <input type='text' th:field='*{residence}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Edit</title></head>
+<body>
+<h2>Edit contrat_employee</h2>
+<form th:action='@{/contrat_employee/update}' th:object='${contrat_employee}' method='post'>
+id: <input type='text' th:field='*{id}'/><br/>
+admin_id: <select th:field='*{admin_id}'>
+<option th:each='item : ${admins}' th:value='${item.id}' th:text='${item}' th:selected='${item.id} == ${contrat_employee.admin_id.id}'></option>
+</select><br/>
+employee_id: <select th:field='*{employee_id}'>
+<option th:each='item : ${employees}' th:value='${item.id}' th:text='${item}' th:selected='${item.id} == ${contrat_employee.employee_id.id}'></option>
+</select><br/>
+contrat_id: <select th:field='*{contrat_id}'>
+<option th:each='item : ${type_contrats}' th:value='${item.id}' th:text='${item}' th:selected='${item.id} == ${contrat_employee.contrat_id.id}'></option>
+</select><br/>
+date_debut_contrat: <input type='text' th:field='*{date_debut_contrat}'/><br/>
+date_fin_contrat: <input type='text' th:field='*{date_fin_contrat}'/><br/>
+<button type='submit'>Mettre à jour</button></form></body></html>

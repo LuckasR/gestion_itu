@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer organisme_social</h2>
+<form th:action='@{/organisme_social/save}' th:object='${organisme_social}' method='post'>
+name: <input type='text' th:field='*{name}'/><br/>
+pourcentage: <input type='text' th:field='*{pourcentage}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

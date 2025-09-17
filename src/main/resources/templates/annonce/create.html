@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer annonce</h2>
+<form th:action='@{/annonce/save}' th:object='${annonce}' method='post'>
+title: <input type='text' th:field='*{title}'/><br/>
+departement_id: <select th:field='*{departement}' th:object='${annonce}'>
+<option th:each='item : ${departements}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+niveau_etude_id: <select th:field='*{niveau_etude}' th:object='${annonce}'>
+<option th:each='item : ${niveau_etudes}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+genre_id: <select th:field='*{genre}' th:object='${annonce}'>
+<option th:each='item : ${genres}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+type_contrat_id: <select th:field='*{type_contrat}' th:object='${annonce}'>
+<option th:each='item : ${type_contrats}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+description: <input type='text' th:field='*{description}'/><br/>
+date_publication: <input type='text' th:field='*{date_publication}'/><br/>
+date_expiration: <input type='text' th:field='*{date_expiration}'/><br/>
+status_id: <select th:field='*{status}' th:object='${annonce}'>
+<option th:each='item : ${statuss}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+<button type='submit'>Enregistrer</button></form></body></html>
