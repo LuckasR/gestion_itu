@@ -5,7 +5,7 @@
 <h2>Créer candidature</h2>
 <form th:action='@{/candidature/save}' th:object='${candidature}' method='post'>
 user_id: <select th:field='*{utilisateur}' th:object='${candidature}'>
-<option th:each='item : ${utilisateurs}' th:value='${item.id}' th:text='${item.name}'></option>
+<option th:each='item : ${utilisateurs}' th:value='${item.id}' th:text='${item.username}'></option>
 </select><br/>
 annonce_id: <select th:field='*{annonce}' th:object='${candidature}'>
 <option th:each='item : ${annonces}' th:value='${item.id}' th:text='${item.name}'></option>

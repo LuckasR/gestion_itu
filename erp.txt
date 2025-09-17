@@ -1,0 +1,41 @@
+ 1 - Process RH
+
+1 - Recrutement profil requise et competence 
+    - Annonce de Recrutement sur les besoin de lentreprise (Niveau d'etude , sexe , age  , adresse  , skills  , domaine , branche/departement )
+        *scenario 
+            - L'entreprise a besoin d'engage un employee ayant un tel profil pour un emploie
+            - Poster l'Annonce sur le site de l'entreprise
+            - Bouton postuler pour postuler sur un emploie disponible
+            - Entrer des Informations personnel des candidats (Niveau d'etude , sexe , age  , adresse  , skills  , domaine , branche/departement  )
+            - Import pdf du CV , LM , CIN , Certificat de residence du candidat
+            - Analyse Automatique du dossier du condidat afin de banir tous ceux qui ne sont pas conforme aux profils rechercher
+            - Sinon on procede au test QCM suivant 
+
+    Traitement et classification 
+    Tests via QCM
+     - le candidat passe un test QCM pour evaluer ses competence mentale (evaluer en pourcetage)
+     - le resultat de ce QCM permet de filtre deja le candidat
+
+
+
+checking candidat sur une Annonce 
+
+Etablir contrat dessai 6 mois , renouvelable une seule fois 
+Procedure daffiliation au organisation sociaux 
+recherche et filtre par rapport age 
+migration candidat -> employee
+
+viens de et va vers 
+systeme de controlle interne (gerer efficacement ses ressources et ses actifs)
+
+Valeur (na misy nombre na misy chiffre)
+Appartenance ()
+Mesure (par rapport au temps , normaliser)
+Irregularite (sans erreur dans le systeme , exempte derreur )
+Realisme (Information realiste dans le systeme )
+
+Validation de entre de donne 
+
+
+champs exiger lors du traitement du candidat(avant QCM)
+ex: Femme qui habite a andoharanofotsy (si dans le cas ou cest un homme , on le banni)
