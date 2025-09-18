@@ -1,11 +1,20 @@
 package com.gestion.charcuterie.controller;
 
-import  com.gestion.charcuterie.model.*;
-import  com.gestion.charcuterie.service.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import  org.springframework.beans.factory.annotation.Autowired;
+import  org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.gestion.charcuterie.model.Candidature;
+import com.gestion.charcuterie.model.Detail_candidature;
+import com.gestion.charcuterie.model.Candidature;
+import com.gestion.charcuterie.service.AnnonceService;
+import com.gestion.charcuterie.service.CandidatureService;
+import com.gestion.charcuterie.service.Status_traitementService;
+import com.gestion.charcuterie.service.UtilisateurService;
 
 
 @Controller
@@ -37,6 +46,13 @@ public class CandidatureController {
         model.addAttribute("annonces", annonceService.getAll());
         model.addAttribute("status_traitements", status_traitementService.getAll());
         return "candidature/create";
+    }
+
+    @GetMapping("/detail/{candidature_id}")
+    public String findDetailCandidature(@PathVariable Integer candidature_id,Model model) {
+        Detail_candidature d = service.getDetail(candidature_id);
+        model.addAttribute("detail_candidature",d);
+        return "candidature/detailCandidature";
     }
 
     @PostMapping("/save")

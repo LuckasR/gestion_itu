@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails Candidature</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <p>Nom : <span th:text="${detail_candidature.candidature.utilisateur.username}"></span></p>
+        <p>Genre : <span th:text="${detail_candidature.genre.name}"></span></p>
+        <p>Durée expérience : <span th:text="${detail_candidature.duree_experience}"></span></p>
+        <p>Résidence : <span th:text="${detail_candidature.residence}"></span></p>
+        <p>CIN : <span th:text="${detail_candidature.cin}"></span></p>
+        <p>Skills : <span th:text="${detail_candidature.skills}"></span></p>
+        <p>Motivation : <span th:text="${detail_candidature.motivation}"></span></p>
+        <p>Expérience professionnelle : <span th:text="${detail_candidature.experience_professionnelle}"></span></p>
+
+        <p>
+            CV :
+            <a th:href="@{/uploads/{file}(file=${detail_candidature.Cv})}" download>
+                Télécharger le CV
+            </a>
+        </p>
+        <p>
+            Lettre de motivation : 
+            <a th:href="@{/uploads/{file}(file=${detail_candidature.lm})}" download>
+                Télécharger la lettre de motivation
+            </a>
+        </p>
+    </div>
+</body>
+</html>

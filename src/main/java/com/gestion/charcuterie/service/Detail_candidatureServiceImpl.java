@@ -16,4 +16,7 @@ public class Detail_candidatureServiceImpl implements Detail_candidatureService 
     public Detail_candidature getById(Integer id) { return repo.findById(id).orElse(null); }
     public void save(Detail_candidature obj) { repo.save(obj); }
     public void delete(Integer id) { repo.deleteById(id); }
+    public Detail_candidature findByCandidatureId(Integer candidature_id){
+        return repo.findByCandidatureId(candidature_id);
+    } 
 }

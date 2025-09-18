@@ -1,0 +1,10 @@
+17sept2025
+clustering -> montee en charge?
+haute disponibilite?
+
+solutions (pour les 2):
+probleme didsponibiliter na mampiakatra RAM et CPU!
+solution plus efficace:scalability horizontal -> ampiana repartiteur de charges(HA-PROXY)
+data: master to salve
+contraire: moteur de base de donnees can do it?(plus de master)
+TP: page simple HTML

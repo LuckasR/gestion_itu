@@ -1,0 +1,120 @@
+/* Fond général noir */
+
+/* style.css */
+body {
+    font-family: 'Inter', sans-serif;
+    background: rgba(0, 0, 0, 0.95);
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Titres */
+h1, h2, h3 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Formulaires */
+form {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+}
+
+button {
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    font-family: inherit;
+}
+
+/* Tous les champs de formulaire */
+.input, select, textarea {
+    width: 100%;  
+    max-width: 100%;     /* prend toute la largeur du conteneur */
+    box-sizing: border-box; /* pour inclure padding + border dans la largeur */
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+}
+
+input[type="file"] {
+    padding: 6px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-family: 'Inter';
+}
+input[type="file"]::file-selector-button {
+    background: #444;
+    font-family: 'Inter';
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+
+
+
+/* Boutons */
+button {
+    background: #444;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #666;
+}
+
+
+/* Conteneur avec fond noir transparent */
+.container {
+    max-width: 800px;
+    margin: 56px auto;
+    justify-content: center;
+    padding-left: 220px;
+    padding-right:30px;
+    background: rgba(0, 0, 0, 0.6); /* noir transparent */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+}
+
+/* Style des paragraphes */
+p {
+    font-size: 18px;
+    margin: 15px 0;
+    line-height: 1.5;
+}
+
+/* Met en valeur les infos */
+span {
+    font-weight: bold;
+    color: #fcfdfd; /* bleu clair pour contraste */
+}
+
+/* Boutons de téléchargement */
+a {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 10px 18px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}

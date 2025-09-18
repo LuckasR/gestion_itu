@@ -8,4 +8,5 @@ public interface Detail_candidatureService {
     Detail_candidature getById(Integer id);
     void save(Detail_candidature obj);
     void delete(Integer id);
+    Detail_candidature findByCandidatureId(Integer candidature_id);
 }
