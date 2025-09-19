@@ -1,7 +1,7 @@
 package com.gestion.charcuterie.model;
+
 import jakarta.persistence.*;
-import java.math.*;
-import java.time.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "organisme_social")

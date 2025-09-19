@@ -1,13 +1,15 @@
 package com.gestion.charcuterie.model;
+
 import jakarta.persistence.*;
-import java.math.*;
-import java.time.*;
+import jakarta.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "planing_entretient")
 public class Planing_entretient {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
@@ -22,8 +24,9 @@ public class Planing_entretient {
     @JoinColumn(name = "siege_entreprise_id")
     private Siege_entreprise siege_entreprise;
 
-    
-    private String date_entretient;
+    @NotNull(message = "La date de l'entretien est obligatoire")
+    @Column(name = "date_entretient", nullable = false)
+    private LocalDateTime date_entretient;
 
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
@@ -37,7 +40,7 @@ public class Planing_entretient {
     public Siege_entreprise getSiege_entreprise() { return siege_entreprise; }
     public void setSiege_entreprise(Siege_entreprise siege_entreprise) { this.siege_entreprise = siege_entreprise; }
 
-    public String getDate_entretient() { return date_entretient; }
-    public void setDate_entretient(String date_entretient) { this.date_entretient = date_entretient; }
+    public LocalDateTime getDate_entretient() { return date_entretient; }
+    public void setDate_entretient(LocalDateTime date_entretient) { this.date_entretient = date_entretient; }
 
 }

@@ -1,16 +1,20 @@
 package com.gestion.charcuterie.model;
+
 import jakarta.persistence.*;
-import java.math.*;
-import java.time.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "annonce")
 public class Annonce {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    
+    @NotBlank(message = "Le titre est obligatoire")
+    @Column(nullable = false)
     private String title;
 
     @ManyToOne
@@ -29,13 +33,16 @@ public class Annonce {
     @JoinColumn(name = "type_contrat_id")
     private Type_contrat type_contrat;
 
-    
+    @NotBlank(message = "La description est obligatoire")
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    
+    @NotNull(message = "La date de publication est obligatoire")
+    @Column(nullable = false)
     private LocalDate date_publication;
 
-    
+    @NotNull(message = "La date d'expiration est obligatoire")
+    @Column(nullable = false)
     private LocalDate date_expiration;
 
     @ManyToOne

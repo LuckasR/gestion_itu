@@ -1,13 +1,15 @@
 package com.gestion.charcuterie.model;
+
 import jakarta.persistence.*;
-import java.math.*;
-import java.time.*;
+import jakarta.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "contrat_employee")
 public class Contrat_employee {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
@@ -22,11 +24,13 @@ public class Contrat_employee {
     @JoinColumn(name = "contrat_id")
     private Type_contrat type_contrat;
 
-    
-    private String date_debut_contrat;
+    @NotNull(message = "La date de début du contrat est obligatoire")
+    @Column(name = "date_debut_contrat", nullable = false)
+    private LocalDateTime date_debut_contrat = LocalDateTime.now();
 
-    
-    private String date_fin_contrat;
+    @NotNull(message = "La date de fin du contrat est obligatoire")
+    @Column(name = "date_fin_contrat", nullable = false)
+    private LocalDateTime date_fin_contrat;
 
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
@@ -40,10 +44,10 @@ public class Contrat_employee {
     public Type_contrat getType_contrat() { return type_contrat; }
     public void setType_contrat(Type_contrat type_contrat) { this.type_contrat = type_contrat; }
 
-    public String getDate_debut_contrat() { return date_debut_contrat; }
-    public void setDate_debut_contrat(String date_debut_contrat) { this.date_debut_contrat = date_debut_contrat; }
+    public LocalDateTime getDate_debut_contrat() { return date_debut_contrat; }
+    public void setDate_debut_contrat(LocalDateTime date_debut_contrat) { this.date_debut_contrat = date_debut_contrat; }
 
-    public String getDate_fin_contrat() { return date_fin_contrat; }
-    public void setDate_fin_contrat(String date_fin_contrat) { this.date_fin_contrat = date_fin_contrat; }
+    public LocalDateTime getDate_fin_contrat() { return date_fin_contrat; }
+    public void setDate_fin_contrat(LocalDateTime date_fin_contrat) { this.date_fin_contrat = date_fin_contrat; }
 
 }
