@@ -1,23 +1,23 @@
 package com.gestion.charcuterie.model;
+
 import jakarta.persistence.*;
-import java.math.*;
-import java.time.*;
 
 @Entity
 @Table(name = "qcm_reponse")
 public class Qcm_reponse {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "question_id")
     private Qcm_question qcm_question;
 
-    
+    @Column(columnDefinition = "TEXT")
     private String reponse;
 
-    
+    @Column(name = "status")
     private Boolean status;
 
     public Integer getId() { return id; }

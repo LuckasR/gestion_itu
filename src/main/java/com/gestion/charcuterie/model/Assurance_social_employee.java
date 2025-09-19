@@ -1,13 +1,14 @@
 package com.gestion.charcuterie.model;
+
 import jakarta.persistence.*;
-import java.math.*;
-import java.time.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "assurance_social_employee")
 public class Assurance_social_employee {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
@@ -18,8 +19,8 @@ public class Assurance_social_employee {
     @JoinColumn(name = "organisme_id")
     private Organisme_social organisme_social;
 
-    
-    private String date_attribution;
+    @Column(name = "date_attribution", nullable = false)
+    private LocalDateTime date_attribution = LocalDateTime.now();
 
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
@@ -30,7 +31,7 @@ public class Assurance_social_employee {
     public Organisme_social getOrganisme_social() { return organisme_social; }
     public void setOrganisme_social(Organisme_social organisme_social) { this.organisme_social = organisme_social; }
 
-    public String getDate_attribution() { return date_attribution; }
-    public void setDate_attribution(String date_attribution) { this.date_attribution = date_attribution; }
+    public LocalDateTime getDate_attribution() { return date_attribution; }
+    public void setDate_attribution(LocalDateTime date_attribution) { this.date_attribution = date_attribution; }
 
 }
