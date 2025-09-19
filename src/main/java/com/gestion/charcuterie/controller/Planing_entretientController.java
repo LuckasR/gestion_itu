@@ -30,12 +30,21 @@ public class Planing_entretientController {
         return "planing_entretient/index";
     }
 
-    @GetMapping("/create")
-    public String createForm(Model model) {
-        model.addAttribute("planing_entretient", new Planing_entretient());
+    @GetMapping("/create/{idCandidature}")
+    public String createForm(@PathVariable("idCandidature") Integer idCandidature, Model model) {
+        Planing_entretient planing = new Planing_entretient();
+        Candidature candidature = candidatureService.getById(idCandidature);
+         if (candidature == null) {
+            // Gérer le cas où la candidature n'existe pas
+            return "redirect:/planing_entretient"; // ou une autre page d'erreur
+        }
+        planing.setCandidature(candidature); // liaison candidature → entretien
+
+        model.addAttribute("planing_entretient", planing);
         model.addAttribute("employees", employeeService.getAll());
-        model.addAttribute("candidatures", candidatureService.getAll());
+        model.addAttribute("candidature", candidatureService.getById(idCandidature)); 
         model.addAttribute("siege_entreprises", siege_entrepriseService.getAll());
+
         return "planing_entretient/create";
     }
 

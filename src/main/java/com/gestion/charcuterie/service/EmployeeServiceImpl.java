@@ -12,8 +12,24 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeRepository repo;
 
-    public List<Employee> getAll() { return repo.findAll(); }
-    public Employee getById(Integer id) { return repo.findById(id).orElse(null); }
-    public void save(Employee obj) { repo.save(obj); }
-    public void delete(Integer id) { repo.deleteById(id); }
+    public List<Employee> getAll() {
+        return repo.findAll();
+    }
+
+    public Employee getById(Integer id) {
+        return repo.findById(id).orElse(null);
+    }
+
+    public Employee checking(String username, String password) {
+        return repo.findByUsernameAndPassword( username,  password);
+    }
+ 
+
+    public void save(Employee obj) {
+        repo.save(obj);
+    }
+
+    public void delete(Integer id) {
+        repo.deleteById(id);
+    }
 }

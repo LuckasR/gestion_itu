@@ -1,22 +1,87 @@
 <!DOCTYPE html>
-<html xmlns:th='http://www.thymeleaf.org'>
-<head><title>Créer</title></head>
-<body>
-<h2>Créer detail_candidature</h2>
-<form th:action='@{/detail_candidature/save}' th:object='${detail_candidature}' method='post'>
-candidature_id: <select th:field='*{candidature}' th:object='${detail_candidature}'>
-<option th:each='item : ${candidatures}' th:value='${item.id}' th:text='${item.name}'></option>
-</select><br/>
-genre_id: <select th:field='*{genre}' th:object='${detail_candidature}'>
-<option th:each='item : ${genres}' th:value='${item.id}' th:text='${item.name}'></option>
-</select><br/>
-duree_experience: <input type='text' th:field='*{duree_experience}'/><br/>
-skills: <input type='text' th:field='*{skills}'/><br/>
-motivation: <input type='text' th:field='*{motivation}'/><br/>
-experience_professionnelle: <input type='text' th:field='*{experience_professionnelle}'/><br/>
-address: <input type='text' th:field='*{address}'/><br/>
-cv: <input type='text' th:field='*{cv}'/><br/>
-lm: <input type='text' th:field='*{lm}'/><br/>
-cin: <input type='text' th:field='*{cin}'/><br/>
-residence: <input type='text' th:field='*{residence}'/><br/>
-<button type='submit'>Enregistrer</button></form></body></html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Créer</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <h2>Détail de la candidature</h2>
+
+    <form th:action="@{/detail_candidature/save}"
+          th:object="${detailCandidature}"
+          method="post"
+          enctype="multipart/form-data">
+
+      <!-- Genre -->
+      
+    Genre:
+    <select th:field="*{genre}" required>
+        <option th:each="item : ${genres}" th:value="${item.id}" th:text="${item.name}"></option>
+    </select><br/>
+
+      <!-- Niveau -->
+      <label>Niveau :</label>
+      <select th:field="*{niveau}" required>
+        <option value="" disabled selected>-- Sélectionner un niveau --</option>
+        <option th:each="item : ${niveau}"
+                th:value="${item.id}"
+                th:text="${item.name}">
+        </option>
+      </select>
+      <br />
+
+      <!-- Durée expérience -->
+      <label>Durée expérience (mois) :</label>
+      <input type="number" th:field="*{duree_experience}" min="0" />
+      <br />
+
+      <!-- Compétences -->
+      <label>Skills :</label>
+      <textarea th:field="*{skills}"></textarea>
+      <br />
+
+      <!-- Motivation -->
+      <label>Motivation :</label>
+      <textarea th:field="*{motivation}"></textarea>
+      <br />
+
+      <!-- Expérience professionnelle -->
+      <label>Expérience professionnelle :</label>
+      <textarea th:field="*{experience_professionnelle}"></textarea>
+      <br />
+
+      <!-- Adresse -->
+      <label>Adresse :</label>
+      <input type="text" th:field="*{address}" required />
+      <br />
+
+      <!-- Résidence -->
+      <label>Résidence :</label>
+      <input type="text" th:field="*{residence}" required />
+      <br />
+
+      <!-- Date naissance -->
+      <label>Date de naissance :</label>
+      <input type="date" th:field="*{date_naissance}" />
+      <br />
+
+      <!-- CV -->
+      <label>CV :</label>
+      <input type="file" name="cvFile" required />
+      <br />
+
+      <!-- Lettre de motivation -->
+      <label>Lettre de motivation :</label>
+      <input type="file" name="lmFile" />
+      <br />
+
+      <!-- CIN -->
+      <label>CIN :</label>
+      <input type="text" th:field="*{cin}" />
+      <br />
+
+      <button type="submit">Enregistrer</button>
+    </form>
+  </body>
+</html>

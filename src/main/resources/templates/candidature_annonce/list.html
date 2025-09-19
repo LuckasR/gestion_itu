@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Candidatures et Annonces</title>
+  </head>
+  <body>
+    <h1>Liste des candidatures</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Candidat</th>
+          <th>Annonce</th>
+          <th>Statut</th>
+          <th>Filière</th>
+          <th>Niveau Étude</th>
+          <th>Expérience</th>
+          <th>Skills</th>
+          <th>Motivation</th>
+          <th>Date Entretient</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="c : ${candidatures}">
+          <td th:text="${c.idCandidature}"></td>
+          <td th:text="${c.candidat}"></td>
+          <td th:text="${c.annonce}"></td>
+          <td th:text="${c.statusTraitement}"></td>
+          <td th:text="${c.filiere}"></td>
+          <td th:text="${c.niveauEtude}"></td>
+          <td th:text="${c.dureeExperience}"></td>
+          <td th:text="${c.skills}"></td>
+          <td th:text="${c.motivation}"></td>
+          <td th:text="${c.Date_entretient}">not defined</td> 
+          <td>
+            <a
+              th:href="@{/planing_entretient/create/{id}(id=${c.idCandidature})}"
+            >
+              <button type="button">Planifier</button>
+            </a>
+            |
+            <a th:href="@{/candidature/detail/{id}(id=${c.idCandidature})}">
+              <button type="button">Voir détail</button>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

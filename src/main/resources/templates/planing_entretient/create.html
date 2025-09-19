@@ -1,17 +1,37 @@
 <!DOCTYPE html>
-<html xmlns:th='http://www.thymeleaf.org'>
-<head><title>Créer</title></head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Planifier un Entretien</title>
+</head>
 <body>
-<h2>Créer planing_entretient</h2>
-<form th:action='@{/planing_entretient/save}' th:object='${planing_entretient}' method='post'>
-employee_id: <select th:field='*{employee}' th:object='${planing_entretient}'>
-<option th:each='item : ${employees}' th:value='${item.id}' th:text='${item.name}'></option>
-</select><br/>
-candidature_id: <select th:field='*{candidature}' th:object='${planing_entretient}'>
-<option th:each='item : ${candidatures}' th:value='${item.id}' th:text='${item.name}'></option>
-</select><br/>
-siege_entreprise_id: <select th:field='*{siege_entreprise}' th:object='${planing_entretient}'>
-<option th:each='item : ${siege_entreprises}' th:value='${item.id}' th:text='${item.name}'></option>
-</select><br/>
-date_entretient: <input type='text' th:field='*{date_entretient}'/><br/>
-<button type='submit'>Enregistrer</button></form></body></html>
+ 
+
+    <form th:action="@{/planing_entretient/save}" th:object="${planing_entretient}" method="post">
+        <!-- Champ caché : id de la candidature -->
+      
+           <input type="hidden" th:field="*{candidature}" />
+
+           
+        <label>Date et heure :</label>
+        <input type="datetime-local" th:field="*{Date_entretient}" required />
+        <br>
+
+        <label>Employé chargé :</label>
+        <select th:field="*{employee}">
+            <option th:each="e : ${employees}" th:value="${e.id}" th:text="${e.username}"></option>
+        </select>
+        <br>
+
+        <label>Siège :</label>
+        <select th:field="*{siege_entreprise}">
+            <option th:each="s : ${siege_entreprises}" th:value="${s.id}" th:text="${s.name}"></option>
+        </select>
+        <br>
+
+     
+        <br>
+
+        <button type="submit">Planifier</button>
+    </form>
+</body>
+</html>

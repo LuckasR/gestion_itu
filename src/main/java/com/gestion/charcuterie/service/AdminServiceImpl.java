@@ -12,8 +12,23 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminRepository repo;
 
-    public List<Admin> getAll() { return repo.findAll(); }
-    public Admin getById(Integer id) { return repo.findById(id).orElse(null); }
-    public void save(Admin obj) { repo.save(obj); }
-    public void delete(Integer id) { repo.deleteById(id); }
+    public List<Admin> getAll() {
+        return repo.findAll();
+    }
+
+    public Admin getById(Integer id) {
+        return repo.findById(id).orElse(null);
+    }
+
+    public Admin checking(String username, String password) {
+        return repo.findByUsernameAndPassword( username,  password);
+    }
+
+    public void save(Admin obj) {
+        repo.save(obj);
+    }
+
+    public void delete(Integer id) {
+        repo.deleteById(id);
+    }
 }

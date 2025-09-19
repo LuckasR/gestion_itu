@@ -16,9 +16,8 @@ public class AdminController {
     private AdminService service;
 
     @GetMapping
-    public String index(Model model) {
-        model.addAttribute("admins", service.getAll());
-        return "admin/index";
+    public String index(Model model) { 
+        return "PageAdmin/index";
     }
 
     @GetMapping("/create")

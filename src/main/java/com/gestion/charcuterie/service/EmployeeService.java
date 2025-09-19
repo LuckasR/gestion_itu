@@ -8,4 +8,5 @@ public interface EmployeeService {
     Employee getById(Integer id);
     void save(Employee obj);
     void delete(Integer id);
+    Employee checking(String username, String password)  ; 
 }

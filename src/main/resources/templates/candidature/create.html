@@ -8,7 +8,7 @@ user_id: <select th:field='*{utilisateur}' th:object='${candidature}'>
 <option th:each='item : ${utilisateurs}' th:value='${item.id}' th:text='${item.username}'></option>
 </select><br/>
 annonce_id: <select th:field='*{annonce}' th:object='${candidature}'>
-<option th:each='item : ${annonces}' th:value='${item.id}' th:text='${item.name}'></option>
+<option th:each='item : ${annonces}' th:value='${item.id}' th:text='${item.title}'></option>
 </select><br/>
 date_candidature: <input type='text' th:field='*{date_candidature}'/><br/>
 status_traitement_id: <select th:field='*{status_traitement}' th:object='${candidature}'>

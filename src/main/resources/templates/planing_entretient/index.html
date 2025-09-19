@@ -16,9 +16,9 @@
 <tbody>
 <tr th:each='row : ${planing_entretients}'>
 <td th:text='${row.id}'></td>
-<td th:text='${row.employee}'></td>
+<td th:text='${row.employee.username}'></td>
 <td th:text='${row.candidature}'></td>
-<td th:text='${row.siege_entreprise}'></td>
+<td th:text='${row.siege_entreprise.name}'></td>
 <td th:text='${row.date_entretient}'></td>
 <td>
 <a th:href='@{/planing_entretient/edit/{id}(id=${row.id})}'>Edit</a> | <a th:href='@{/planing_entretient/delete/{id}(id=${row.id})}'>Delete</a>

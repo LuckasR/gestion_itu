@@ -18,7 +18,7 @@ public class Qcm_test {
     private BigDecimal score;
 
     
-    private String date_test;
+    private LocalDateTime date_test;
 
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
@@ -29,7 +29,7 @@ public class Qcm_test {
     public BigDecimal getScore() { return score; }
     public void setScore(BigDecimal score) { this.score = score; }
 
-    public String getDate_test() { return date_test; }
-    public void setDate_test(String date_test) { this.date_test = date_test; }
+    public LocalDateTime getDate_test() { return date_test; }
+    public void setDate_test(LocalDateTime date_test) { this.date_test = date_test; }
 
 }

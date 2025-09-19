@@ -8,4 +8,5 @@ public interface AdminService {
     Admin getById(Integer id);
     void save(Admin obj);
     void delete(Integer id);
+    Admin checking(String username, String password) ; 
 }

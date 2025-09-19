@@ -8,4 +8,5 @@ public interface UtilisateurService {
     Utilisateur getById(Integer id);
     void save(Utilisateur obj);
     void delete(Integer id);
+    Utilisateur checking(String username, String password) ; 
 }

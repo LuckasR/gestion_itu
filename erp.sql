@@ -13,6 +13,12 @@ create table niveau_etude (
     name varchar(100) 
 ) ;
 
+
+create table filiere (
+    id serial primary key , 
+    name varchar(100) 
+) ;
+
 create table siege_entreprise (
     id serial primary key , 
     name varchar(100) 
@@ -64,10 +70,11 @@ create table admin  (
 create table employee  (
     id serial primary key , 
     role_id int references role(id) ,
+    departement_id int references departement(id) , 
     username varchar(100) , 
     password varchar(100)
 ) ; 
-
+-- alter table employee add column departement_id int references departement(id) ; 
 
 create table utilisateur  (
     id serial primary key , 
@@ -89,6 +96,8 @@ create table information_employee (
     id serial primary key , 
     employee_id int references employee(id) ,
     contrat_id int references type_contrat(id) , 
+    filiere_id int references filiere(id) ,
+    niveau_etude_id int references niveau_etude(id) ,
     first_name varchar(100) , 
     last_name varchar(100) , 
     email varchar(100) , 
@@ -126,23 +135,34 @@ create table annonce(
     niveau_etude_id int references niveau_etude(id) ,
     genre_id int references genre(id) ,
     type_contrat_id int references type_contrat(id) ,
+    age_requis int  , 
+    experience_requis int  , 
+    salaire decimal(10,2) ,
     description text,
     date_publication date not null default current_date,
     date_expiration date , 
     status_id int references status(id)
 );
-
+ 
 create table candidature ( 
     id serial primary key ,
     user_id int references Utilisateur(id) ,
     annonce_id int references annonce(id) ,
     date_candidature date not null default current_date,
-    status_traitement_id int references status_traitement(id)
+    passed_test boolean default false ,
+    entretien_planifie boolean default false ,
+    status_traitement_id int references status_traitement(id) 
 ) ; 
+
+
+update candidature set passed_test = false   ;
+
 
 create table detail_candidature (
     id serial primary key ,
     candidature_id int references candidature(id) ,
+    filiere_id int references filiere(id) ,
+    niveau_etude_id int references niveau_etude(id) ,
     genre_id int references genre(id) , 
     duree_experience varchar(250) , 
     skills text  ,
@@ -152,8 +172,26 @@ create table detail_candidature (
     cv varchar(255) , 
     lm varchar(255) , 
     cin varchar(255) , 
-    residence varchar(255) 
+    residence varchar(255)  , 
+    date_naissance date  
 ) ;
+ 
+SELECT 
+    c.id AS id_candidature,
+    c.date_candidature,
+    u.username AS candidat, 
+    d.duree_experience,
+    d.skills, 
+    d.experience_professionnelle,
+    d.residence,
+    st.name AS status_traitement
+FROM candidature c
+LEFT JOIN utilisateur u ON c.user_id = u.id
+LEFT JOIN annonce a ON c.annonce_id = a.id
+LEFT JOIN status_traitement st ON c.status_traitement_id = st.id
+LEFT JOIN detail_candidature d ON c.id = d.candidature_id;
+ 
+
 
 create table qcm_question (
     id serial primary key , 
@@ -178,11 +216,12 @@ create table qcm_test (
 
 create table planing_entretient (
     id serial primary key , 
-    employee_id int references employee(id) ,
-    candidature_id int references candidature(id) ,
+    employee_id int references employee(id) , -- Employee charger de l'entretient 
+    candidature_id int references candidature(id) , 
     siege_entreprise_id int references siege_entreprise(id) ,
     date_entretient timestamp not null 
 ) ;
+
 create table resultat_entretient (
     id serial primary key ,
     employee_id int references employee(id) ,
@@ -199,4 +238,18 @@ create table scoring_candidature (
     date_resultat  timestamp default current_timestamp
 ) ;
 
- 
+
+
+create table parametre (
+    id serial primary key , 
+    name varchar(100)  , -- Recrutement auto
+    is_active boolean default false 
+) ;
+
+create table detail_parametre (
+    id serial primary key , 
+    params_id int references parametre(id) ,
+    name varchar(100)  , 
+    value int default 0 ,
+    is_active boolean default false 
+) ;

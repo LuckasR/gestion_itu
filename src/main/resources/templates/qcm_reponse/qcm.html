@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>QCM</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h2 th:text="${question.question}">Texte question</h2>
+
+    <!-- Formulaire qui envoie vers /qcm/valider -->
+    <form th:action="@{/qcm_question/valider}" method="post">
+        <input type="hidden" name="questionId" th:value="${question.id}" />
+        <input type="hidden" name="candidatId" th:value="${candidatId}" />
+
+
+        
+
+        <ul>
+            <li th:each="rep : ${reponse}">
+                <label th:for="'rep' + ${rep.id}">
+                    <input type="checkbox" th:id="'rep' + ${rep.id}" 
+                           name="reponses" th:value="${rep.id}"/>
+                    <span th:text="${rep.reponse}"></span>
+                </label>
+            </li>
+        </ul>
+
+        <button type="submit">Valider</button>
+    </form>
+</body>
+</html>

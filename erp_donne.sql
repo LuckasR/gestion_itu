@@ -64,10 +64,13 @@ INSERT INTO admin (username, password) VALUES
 ('admin2', 'pass456');
 
 -- Employes
-INSERT INTO employee (role_id, username, password) VALUES 
-(2, 'manager1', 'pwd1'),
-(3, 'recruteur1', 'pwd2'),
-(4, 'employe1', 'pwd3');
+INSERT INTO employee (role_id,departement_id, username, password) VALUES 
+(2, 1 , 'manager1', 'pwd1'),
+(3, 2 ,'recruteur1', 'pwd2'),
+(4, 3 , 'employe1', 'pwd3');
+
+update employee set departement_id = 2 where id = 2;
+update employee set departement_id = 3 where id = 3;
 
 -- Utilisateur (candidats)
 INSERT INTO utilisateur (username, password) VALUES 
@@ -104,7 +107,7 @@ INSERT INTO detail_candidature (candidature_id, genre_id, duree_experience, skil
 
 -- Questions
 INSERT INTO qcm_question (departement_id, question) VALUES
-(1, 'Qu est ce que Java ?'),
+(1, 'Qu est ce que la vie  ?'),
 (2, 'Qu est ce qu un bilan comptable ?');
 
 -- Reponses
@@ -113,6 +116,16 @@ INSERT INTO qcm_reponse (question_id, reponse, status) VALUES
 (1, 'Un systeme d exploitation', false),
 (2, 'Un document financier resumant actifs et passifs', true),
 (2, 'Un logiciel de comptabilite', false);
+
+
+
+INSERT INTO qcm_reponse (question_id, reponse, status) VALUES
+(3, 'Un toutoutn', true),
+(3, 'Un syscd', false),
+(3, 'Un rien', false),
+(3, 'Un tout', true) ; 
+
+
 
 -- Test QCM
 INSERT INTO qcm_test (candidature_id, score) VALUES
@@ -134,3 +147,16 @@ INSERT INTO resultat_entretient (employee_id, candidature_id, pourcentage_satisf
 INSERT INTO scoring_candidature (candidature_id, pourcentage_embauche) VALUES
 (1, 88.00),
 (2, 70.00);
+
+
+INSERT INTO filiere (name) VALUES
+('Informatique'),
+('Genie Civil'),
+('Electronique'),
+('Telecommunications'),
+('Gestion'),
+('Comptabilite'),
+('Marketing'),
+('Droit'),
+('Medecine'),
+('Agronomie');

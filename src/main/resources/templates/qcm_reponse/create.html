@@ -1,12 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th='http://www.thymeleaf.org'>
-<head><title>Créer</title></head>
-<body>
-<h2>Créer qcm_reponse</h2>
-<form th:action='@{/qcm_reponse/save}' th:object='${qcm_reponse}' method='post'>
-question_id: <select th:field='*{qcm_question}' th:object='${qcm_reponse}'>
-<option th:each='item : ${qcm_questions}' th:value='${item.id}' th:text='${item.name}'></option>
-</select><br/>
-reponse: <input type='text' th:field='*{reponse}'/><br/>
-status: <input type='text' th:field='*{status}'/><br/>
-<button type='submit'>Enregistrer</button></form></body></html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Créer</title>
+  </head>
+  <body>
+    <h2>Créer qcm_reponse</h2>
+    <form
+      th:action="@{/qcm_reponse/save}"
+      th:object="${qcm_reponse}"
+      method="post"
+    >
+      question_id:
+      <select th:field="*{qcm_question}" th:object="${qcm_reponse}">
+        <option
+          th:each="item : ${qcm_questions}"
+          th:value="${item.id}"
+          th:text="${item.name}"
+        ></option></select
+      ><br />
+      reponse: <input type="text" th:field="*{reponse}" /><br />
+      status: <input type="text" th:field="*{status}" /><br />
+      <button type="submit">Enregistrer</button>
+    </form>
+  </body>
+</html>
