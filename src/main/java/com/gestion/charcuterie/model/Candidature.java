@@ -1,25 +1,30 @@
 package com.gestion.charcuterie.model;
 
 import jakarta.persistence.*;
-import java.math.*;
-import java.time.*;
+import jakarta.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "candidature")
 public class Candidature {
 
-    @Id
+  
+    @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
+    @NotNull(message = "L'utilisateur est obligatoire")
     private Utilisateur utilisateur;
 
     @ManyToOne
-    @JoinColumn(name = "annonce_id")
+    @JoinColumn(name = "annonce_id", nullable = false)
+    @NotNull(message = "L'annonce est obligatoire")
     private Annonce annonce;
 
+    @NotNull(message = "La date de candidature est obligatoire")
+    @Column(nullable = false)
     private LocalDate date_candidature;
 
     @ManyToOne

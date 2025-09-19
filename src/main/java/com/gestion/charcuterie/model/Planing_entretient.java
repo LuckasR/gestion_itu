@@ -1,13 +1,15 @@
 package com.gestion.charcuterie.model;
+
 import jakarta.persistence.*;
-import java.math.*;
-import java.time.*;
+import jakarta.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "planing_entretient")
 public class Planing_entretient {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne

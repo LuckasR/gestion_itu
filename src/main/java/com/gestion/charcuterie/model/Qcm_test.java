@@ -1,24 +1,27 @@
 package com.gestion.charcuterie.model;
+
 import jakarta.persistence.*;
-import java.math.*;
-import java.time.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "qcm_test")
 public class Qcm_test {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "candidature_id")
     private Candidature candidature;
 
-    
+    @Column(precision = 10, scale = 2)
     private BigDecimal score;
 
-    
-    private LocalDateTime date_test;
+ 
+    @Column(name = "date_test")
+    private LocalDateTime date_test = LocalDateTime.now();
 
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }

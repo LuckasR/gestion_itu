@@ -1,8 +1,11 @@
 package com.gestion.charcuterie.model;
 
 import jakarta.persistence.*;
-import java.math.*;
-import java.time.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "annonce")
@@ -36,7 +39,6 @@ public class Annonce {
 
     private Integer experience_requis;
 
-
     private LocalDate date_publication;
 
     private LocalDate date_expiration;
@@ -47,10 +49,6 @@ public class Annonce {
     @JoinColumn(name = "status_id")
     private Status status;
 
-
-
-
-    
     public Integer getAge_requis() {
         return age_requis;
     }
@@ -58,7 +56,7 @@ public class Annonce {
     public void setAge_requis(Integer age_requis) {
         this.age_requis = age_requis;
     }
-    
+
     public Integer getExperience_requis() {
         return experience_requis;
     }
@@ -66,7 +64,6 @@ public class Annonce {
     public void setExperience_requis(Integer experience_requis) {
         this.experience_requis = experience_requis;
     }
-
 
     public Integer getId() {
         return id;

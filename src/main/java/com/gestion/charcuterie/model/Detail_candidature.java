@@ -1,8 +1,6 @@
 package com.gestion.charcuterie.model;
 
 import jakarta.persistence.*;
-import java.math.*;
-import java.time.*;
 
 @Entity
 @Table(name = "detail_candidature")

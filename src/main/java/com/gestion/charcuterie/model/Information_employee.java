@@ -1,13 +1,14 @@
 package com.gestion.charcuterie.model;
+
 import jakarta.persistence.*;
-import java.math.*;
-import java.time.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "information_employee")
 public class Information_employee {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
@@ -18,35 +19,35 @@ public class Information_employee {
     @JoinColumn(name = "contrat_id")
     private Type_contrat type_contrat;
 
-    
+    @Column(name = "first_name")
     private String first_name;
 
-    
+    @Column(name = "last_name")
     private String last_name;
 
-    
+    @Column(name = "email")
     private String email;
 
-    
+    @Column(name = "phone")
     private String phone;
 
-    
+    @Column(name = "address")
     private String address;
 
-    
+    @Column(name = "cv")
     private String cv;
 
-    
+    @Column(name = "lm")
     private String lm;
 
-    
+    @Column(name = "cin")
     private String cin;
 
-    
+    @Column(name = "residence")
     private String residence;
 
-    
-    private String date_creation;
+    @Column(name = "date_creation", nullable = false)
+    private LocalDateTime date_creation = LocalDateTime.now();
 
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
@@ -84,7 +85,7 @@ public class Information_employee {
     public String getResidence() { return residence; }
     public void setResidence(String residence) { this.residence = residence; }
 
-    public String getDate_creation() { return date_creation; }
-    public void setDate_creation(String date_creation) { this.date_creation = date_creation; }
+    public LocalDateTime getDate_creation() { return date_creation; }
+    public void setDate_creation(LocalDateTime date_creation) { this.date_creation = date_creation; }
 
 }

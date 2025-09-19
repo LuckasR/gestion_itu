@@ -1,13 +1,14 @@
 package com.gestion.charcuterie.model;
+
 import jakarta.persistence.*;
-import java.math.*;
-import java.time.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "historique_role")
 public class Historique_role {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
@@ -18,8 +19,8 @@ public class Historique_role {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    
-    private String date_modification;
+    @Column(name = "date_modification", nullable = false)
+    private LocalDateTime date_modification = LocalDateTime.now();
 
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
@@ -30,7 +31,7 @@ public class Historique_role {
     public Role getRole() { return role; }
     public void setRole(Role role) { this.role = role; }
 
-    public String getDate_modification() { return date_modification; }
-    public void setDate_modification(String date_modification) { this.date_modification = date_modification; }
+    public LocalDateTime getDate_modification() { return date_modification; }
+    public void setDate_modification(LocalDateTime date_modification) { this.date_modification = date_modification; }
 
 }
