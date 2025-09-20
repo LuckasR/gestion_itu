@@ -33,10 +33,10 @@ public class Annonce {
     private String description;
 
     
-    private LocalDate date_publication;
+    private LocalDateTime date_publication;
 
     
-    private LocalDate date_expiration;
+    private LocalDateTime date_expiration;
 
     @ManyToOne
     @JoinColumn(name = "status_id")
@@ -63,11 +63,11 @@ public class Annonce {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
-    public LocalDate getDate_publication() { return date_publication; }
-    public void setDate_publication(LocalDate date_publication) { this.date_publication = date_publication; }
+    public LocalDateTime getDate_publication() { return date_publication; }
+    public void setDate_publication(LocalDateTime date_publication) { this.date_publication = date_publication; }
 
-    public LocalDate getDate_expiration() { return date_expiration; }
-    public void setDate_expiration(LocalDate date_expiration) { this.date_expiration = date_expiration; }
+    public LocalDateTime getDate_expiration() { return date_expiration; }
+    public void setDate_expiration(LocalDateTime date_expiration) { this.date_expiration = date_expiration; }
 
     public Status getStatus() { return status; }
     public void setStatus(Status status) { this.status = status; }

@@ -9,5 +9,4 @@ public interface CandidatureService {
     void save(Candidature obj);
     void delete(Integer id);
     Detail_candidature getDetail(Integer candidature_id);
-    boolean checkCandidature(Integer user_id, Integer annonce_id);
 }

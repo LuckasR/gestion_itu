@@ -41,8 +41,4 @@ public class CandidatureServiceImpl implements CandidatureService {
     {
         return detail_candidatureRepository.findByCandidatureId(candidature_id);
     }
-
-    public boolean checkCandidature(){
-        
-    }
 }

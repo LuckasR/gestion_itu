@@ -19,7 +19,7 @@ public class Candidature {
     private Annonce annonce;
 
     
-    private LocalDate date_candidature;
+    private LocalDateTime date_candidature;
 
     @ManyToOne
     @JoinColumn(name = "status_traitement_id")
@@ -34,8 +34,8 @@ public class Candidature {
     public Annonce getAnnonce() { return annonce; }
     public void setAnnonce(Annonce annonce) { this.annonce = annonce; }
 
-    public LocalDate getDate_candidature() { return date_candidature; }
-    public void setDate_candidature(LocalDate date_candidature) { this.date_candidature = date_candidature; }
+    public LocalDateTime getDate_candidature() { return date_candidature; }
+    public void setDate_candidature(LocalDateTime date_candidature) { this.date_candidature = date_candidature; }
 
     public Status_traitement getStatus_traitement() { return status_traitement; }
     public void setStatus_traitement(Status_traitement status_traitement) { this.status_traitement = status_traitement; }

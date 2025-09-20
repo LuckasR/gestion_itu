@@ -1,4 +1,5 @@
 package com.gestion.charcuterie.model;
+
 import jakarta.persistence.*;
 import java.math.*;
 import java.time.*;
@@ -7,29 +8,48 @@ import java.time.*;
 @Table(name = "qcm_test")
 public class Qcm_test {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "candidature_id")
     private Candidature candidature;
 
-    
     private BigDecimal score;
 
-    
-    private String date_test;
+    private LocalDateTime date_test;
 
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    public Integer getId() {
+        return id;
+    }
 
-    public Candidature getCandidature() { return candidature; }
-    public void setCandidature(Candidature candidature) { this.candidature = candidature; }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    public BigDecimal getScore() { return score; }
-    public void setScore(BigDecimal score) { this.score = score; }
+    public Candidature getCandidature() {
+        return candidature;
+    }
 
-    public String getDate_test() { return date_test; }
-    public void setDate_test(String date_test) { this.date_test = date_test; }
+    public void setCandidature(Candidature candidature) {
+        this.candidature = candidature;
+    }
+
+    public BigDecimal getScore() {
+        return score;
+    }
+
+    public void setScore(BigDecimal score) {
+        this.score = score;
+    }
+
+    public LocalDateTime getDate_test() {
+        return date_test;
+    }
+
+    public void setDate_test(LocalDateTime date_test) {
+        this.date_test = date_test;
+    }
 
 }

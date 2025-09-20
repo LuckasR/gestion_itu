@@ -16,4 +16,8 @@ public class Qcm_testServiceImpl implements Qcm_testService {
     public Qcm_test getById(Integer id) { return repo.findById(id).orElse(null); }
     public void save(Qcm_test obj) { repo.save(obj); }
     public void delete(Integer id) { repo.deleteById(id); }
+    public Qcm_test getByCandidature_id(Integer candidature_id)
+    {
+        return repo.getByCandidature_id(candidature_id);
+    }
 }

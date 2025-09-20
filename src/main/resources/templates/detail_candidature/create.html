@@ -10,21 +10,22 @@
     <div class="container">
         <h2>Detail de la candidature</h2>
         <form th:action='@{/detail_candidature/save}' method='post' enctype="multipart/form-data">
-            Genre: <select name="genre_id" required>
+            Genre <select name="genre_id" required>
                 <option th:each='item : ${genres}' th:value='${item.id}'
                     th:text='${item.name}'></option>
             </select><br />
-            Durée experience: <input type='text' class="input"
+            Durée experience <input type='text' class="input"
                 name="duree_experience" /><br />
-            Skills: <textarea name="skills"></textarea><br />
-            Motivation: <textarea name="motivation"></textarea> <br />
-            Experience professionnelle: <textarea
+            Skills <textarea name="skills"></textarea><br />
+            Motivation <textarea name="motivation"></textarea> <br />
+            Experience professionnelle <textarea
                 name="experience_professionnelle"></textarea><br />
             Address <input type='text' class="input" name='address' required /><br />
             Residence <input type='text' class="input" name='residence' required /><br />
-            CV: <input type="file" name="cv" id required><br />
-            Lettre de motivation: <input type="file" name="lm" id><br />
-            CIN: <input  class="input" type="text" name='cin'><br />
+            CV <input type="file" name="cv" id required><br />
+            Lettre de motivation <input type="file" name="lm" id><br />
+            CIN <input  class="input" type="text" name='cin'><br />
+            <p th:text="${messageErreur}"></p>
             <button type='submit'>Enregistrer</button>
         </form>
         </div>
