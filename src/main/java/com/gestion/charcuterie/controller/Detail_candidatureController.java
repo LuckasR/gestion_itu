@@ -100,7 +100,7 @@ public class Detail_candidatureController {
         Candidature c = new Candidature();
         c.setAnnonce(a);
         c.setUtilisateur(u);
-        c.setDate_candidature(LocalDate.now());
+        c.setDate_candidature(LocalDateTime.now());
         c.setStatus_traitement(st);
         candidatureService.save(c);
 

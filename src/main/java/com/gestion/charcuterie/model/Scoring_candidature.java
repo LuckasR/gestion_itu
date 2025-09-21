@@ -15,10 +15,8 @@ public class Scoring_candidature {
     @JoinColumn(name = "candidature_id")
     private Candidature candidature;
 
-    
     private BigDecimal pourcentage_embauche;
 
-    
     private LocalDateTime date_resultat;
 
     public Integer getId() { return id; }

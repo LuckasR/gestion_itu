@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th='http://www.thymeleaf.org'>
     <head><title>Créer</title></head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <body>
-        <h2>Entretien</h2>
-        <form th:action='@{/resultat_entretient/save}' method='post'>
-        pourcentage_satisfaction: <input type='number' name="pourcentage_satisfaction" required/><br />
-        <button type='submit'>Valider</button>
-        </form>
+        <div class="resultat_entretien">
+            <h2>Entretien</h2>
+            <form th:action='@{/resultat_entretient/save}' method='post'>
+                Pourcentage satisfaction: <input type='number'
+                    name="pourcentage_satisfaction" required /><br />
+                <button type='submit'>Valider</button>
+                <a th:href="@{/resultat_entretient}" style="width:92%;text-align: center;border-radius: 16px;">Retour</a>
+            </form>
+        </div>
     </body>
 </html>

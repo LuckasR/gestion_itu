@@ -29,6 +29,7 @@ button {
     padding: 10px;
     border-radius: 12px;
     border: none;
+    font-size: 16px;
     font-family: inherit;
 }
 
@@ -118,3 +119,140 @@ a {
 a:hover {
     background-color: rgba(255, 255, 255, 0.3);
 }
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse; /* supprime l'espace entre les bordures */
+    margin: 20px 0;
+    margin-left:8px;
+    background: rgba(255, 255, 255, 0.05); /* fond léger transparent */
+    border-radius: 16px;
+    overflow: hidden; /* pour arrondir les coins de la table */
+}
+
+/* En-têtes */
+th {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-weight: 600;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Cellules */
+td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ddd;
+}
+
+/* Ligne survolée */
+tr:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Colonne des dates */
+td.date, th.date {
+    text-align: center;         /* centré */
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #f0f0f0;             /* texte clair */
+    white-space: nowrap;        /* évite le retour à la ligne */
+    padding: 8px 12px;
+}
+
+/* Style général pour input date */
+input[type="datetime-local"],input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* Pour le bouton calendrier (Chrome, Edge, Safari) */
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);              /* icône blanche */
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+.inputs{
+    margin-left: -0.8%;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Masque le style par défaut pour pouvoir customiser */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;  /* supprime les flèches par défaut */
+    margin: 0;
+}
+
+/* On ajoute des flèches avec pseudo-éléments */
+input[type=number] {
+    position: relative;
+    padding-right: 30px; /* espace pour les flèches custom */
+}
+
+/* Faux boutons flèches */
+input[type=number]::after {
+    content: "▲▼";        /* flèches haut et bas */
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+    color: black;         /* couleur de l’icône */
+    background: black;    /* couleur de fond */
+    border-radius: 2px;
+    padding: 2px 4px;
+    pointer-events: none; /* ne bloque pas la saisie */
+}
+
+
+
+.inputtype {
+    padding-top: 1.2%;
+    padding-left: 1.2%;
+    padding-right: 1.2%;
+    padding-bottom: 1.2%;
+    margin-top: 2%;
+    width: 20%;
+}
+
+
+
+.inputtype input{
+    margin-top: 3.6%;
+}
+
+.inputtype button{
+    margin-top:10.2%;
+}
+
+.resultat_entretien{
+    margin-top:24vh;
+    justify-self: center;
+    justify-content: center;
+}
+
+.resultat_entretien input{
+    margin-top: 4%;
+    margin-bottom: 3.6%;
+}
+
+
+
