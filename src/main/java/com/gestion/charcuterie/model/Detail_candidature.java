@@ -1,5 +1,7 @@
 package com.gestion.charcuterie.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.*;
 
 @Entity

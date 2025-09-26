@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Entretiens</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        tr:nth-child(even) { background-color: #fafafa; }
+    </style>
+</head>
+<body>
+    <h1>Liste des Entretiens</h1>
+
+    <table>
+        <thead>
+            <tr>
+             
+                <th>Annonce</th>
+                <th>Candidat</th>
+                <th>Âge</th>
+                <th>Diplôme</th>
+                <th>Score QCM (sur 5)</th>
+                <th>Action </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="row : ${entretiens}">
+                <td th:text="${row[1]}"></td> <!-- nomCandidat -->
+                <td th:text="${row[2]}"></td> <!-- age -->
+                <td th:text="${row[3]}"></td> <!-- diplome -->
+                <td th:text="${row[4]}"></td> <!-- scoreQcmSur5 -->
+                <td th:text="${row[5]}"></td> <!-- scoreQcmSur5 -->
+                <td>
+                    <a th:href='@{/resultat_entretient/create/{id}(id=${{row[0]}})}'> Donner la note d'entretient </a>
+                </td> 
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

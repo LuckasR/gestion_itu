@@ -8,4 +8,6 @@ public interface CandidatureService {
     Candidature getById(Integer id);
     void save(Candidature obj);
     void delete(Integer id);
+      Detail_candidature getDetail(Integer candidature_id);
+       List<Object[]> getEntretiensWithDetails();
 }

@@ -20,6 +20,17 @@ public class AdminController {
         return "PageAdmin/index";
     }
 
+
+    @GetMapping("/crud")
+    public String gestionCrud(Model model) { 
+        return "PageAdmin/crud";
+    }
+    
+    @GetMapping("/rh")
+    public String gestionRh(Model model) { 
+        return "PageAdmin/RH/index";
+    }
+
     @GetMapping("/create")
     public String createForm(Model model) {
         model.addAttribute("admin", new Admin());

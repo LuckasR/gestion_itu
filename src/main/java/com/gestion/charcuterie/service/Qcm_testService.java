@@ -9,5 +9,7 @@ public interface Qcm_testService {
     void save(Qcm_test obj);
     void delete(Integer id);
     List<Qcm_test> getByCandidatureId(int candidatureId);
+    Qcm_test getByCandidatureId1(int candidatureId);
+
 
 }

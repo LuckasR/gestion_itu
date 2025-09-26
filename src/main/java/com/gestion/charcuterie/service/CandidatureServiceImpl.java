@@ -12,6 +12,9 @@ public class CandidatureServiceImpl implements CandidatureService {
     @Autowired
     private CandidatureRepository repo;
 
+    @Autowired
+    private Detail_candidatureRepository detail_candidatureRepository;
+
     public List<Candidature> getAll() {
         return repo.findAll();
     }
@@ -20,9 +23,8 @@ public class CandidatureServiceImpl implements CandidatureService {
         return repo.findById(id).orElse(null);
     }
 
- 
-    public List<Object[]> getVal( int id) {
-        return repo.findbyAnnonce(   id);
+    public List<Object[]> getVal(int id) {
+        return repo.findbyAnnonce(id);
     }
 
     public void save(Candidature obj) {
@@ -31,5 +33,14 @@ public class CandidatureServiceImpl implements CandidatureService {
 
     public void delete(Integer id) {
         repo.deleteById(id);
+    }
+
+    public Detail_candidature getDetail(Integer candidature_id) {
+        return detail_candidatureRepository.findByCandidatureId(candidature_id);
+    }
+
+     @Override
+    public List<Object[]> getEntretiensWithDetails() {
+        return repo.getEntretiensWithDetails();
     }
 }

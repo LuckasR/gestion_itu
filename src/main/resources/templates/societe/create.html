@@ -6,5 +6,7 @@
 <form th:action='@{/societe/save}' th:object='${societe}' method='post'>
 name: <input type='text' th:field='*{name}'/><br/>
 nombre_qcm_test: <input type='text' th:field='*{nombre_qcm_test}'/><br/>
+nombre_qcm_test: <input type='text' th:field='*{durre_entretient}'/><br/>
+
 date_creation: <input type='text' th:field='*{date_creation}'/><br/>
 <button type='submit'>Enregistrer</button></form></body></html>

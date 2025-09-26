@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Edit</title></head>
+<body>
+<h2>Edit emploi_dt_entretient</h2>
+<form th:action='@{/emploi_dt_entretient/update}' th:object='${emploi_dt_entretient}' method='post'>
+id: <input type='text' th:field='*{id}'/><br/>
+tache_title: <input type='text' th:field='*{tache_title}'/><br/>
+date_entretient: <input type='text' th:field='*{date_entretient}'/><br/>
+heure_debut: <input type='text' th:field='*{heure_debut}'/><br/>
+heure_fin: <input type='text' th:field='*{heure_fin}'/><br/>
+<button type='submit'>Mettre à jour</button></form></body></html>

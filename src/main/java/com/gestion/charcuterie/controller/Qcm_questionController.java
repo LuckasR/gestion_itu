@@ -3,6 +3,7 @@ package com.gestion.charcuterie.controller;
 import com.gestion.charcuterie.model.*;
 import com.gestion.charcuterie.service.*;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,13 @@ public class Qcm_questionController {
     @Autowired
     private Qcm_testService testService;
 
+    private int scoreMax;
+
+    @PostConstruct
+    public void init() {
+        scoreMax = societeService.getById(1).getNombre_qcm_test();
+    }
+
     @GetMapping
     public String index(Model model) {
         model.addAttribute("qcm_questions", service.getAll());
@@ -50,9 +58,10 @@ public class Qcm_questionController {
 
         if (testCandidat != null && testCandidat == true) {
             model.addAttribute("error", "Vous avez déjà passé le test QCM.");
-            List<Qcm_test> values = testService.getByCandidatureId( candidatId ) ;  
-            Qcm_test test = values.get( 0 ) ; 
+            List<Qcm_test> values = testService.getByCandidatureId(candidatId);
+            Qcm_test test = values.get(0);
             model.addAttribute("score", test.getScore());
+            model.addAttribute("scoreMax", scoreMax);
             return "qcm_reponse/qcmReponse";
         }
 
@@ -117,6 +126,7 @@ public class Qcm_questionController {
             List<Qcm_test> values = testService.getByCandidatureId( candidatId ) ;  
             Qcm_test test = values.get( 0 ) ; 
             model.addAttribute("score", test.getScore());
+            model.addAttribute("scoreMax", scoreMax);
             return "qcm_reponse/qcmReponse";
         }
 
@@ -128,6 +138,7 @@ public class Qcm_questionController {
         System.out.println(nombreQuestion);
         if (nombreQuestion < 1) {
             model.addAttribute("score", newScore);
+            model.addAttribute("scoreMax", scoreMax);
             Qcm_test ResultatTestCandidat = new Qcm_test();
             ResultatTestCandidat.setCandidature(cand);
             ResultatTestCandidat.setScore(BigDecimal.valueOf(newScore));
@@ -136,7 +147,16 @@ public class Qcm_questionController {
             testService.save(ResultatTestCandidat);
             candidatService.save(cand);
             session.invalidate();
-            return "qcm_reponse/qcmReponse";
+            double pourcentage  = ( newScore/scoreMax ) *100 ; 
+            System.out.println(pourcentage);
+            Societe sx  = societeService.getById(1); 
+            System.out.println(sx);
+            if (pourcentage >= sx.getPourcentage_passed().doubleValue() ) {
+                return "redirect:/planing_entretient/createAuto/"+candidatId;   
+            }else{
+                model.addAttribute("result", "Vous navez pas passer le test car votre note est de "+sx+"/100") ; 
+                return "result"; 
+            }
         } else {
             session.setAttribute("nombreQuestion", nombreQuestion);
             session.setAttribute("score", newScore);

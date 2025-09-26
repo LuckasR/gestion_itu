@@ -1,34 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>Créer</title>
-  </head>
-  <body>
-    <h2>Créer resultat_entretient</h2>
-    <form
-      th:action="@{/resultat_entretient/save}"
-      th:object="${resultat_entretient}"
-      method="post"
-    >
-      employee_id:
-      <select th:field="*{employee}" th:object="${resultat_entretient}">
-        <option
-          th:each="item : ${employees}"
-          th:value="${item.id}"
-          th:text="${item.username}"
-        ></option></select
-      ><br />
-      candidature_id:
-      <select th:field="*{candidature}" th:object="${resultat_entretient}">
-        <option
-          th:each="item : ${candidatures}"
-          th:value="${item.id}" 
-        ></option></select
-      ><br />
-      pourcentage_satisfaction:
-      <input type="text" th:field="*{pourcentage_satisfaction}" /><br />
-      date_resultat: <input type="text" th:field="*{date_resultat}" /><br />
-      <button type="submit">Enregistrer</button>
-    </form>
-  </body>
+<html xmlns:th='http://www.thymeleaf.org'>
+    <head><title>Insérer le résultat d'un entretien</title></head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <body>
+        <div class="resultat_entretien">
+            <h2>Entretien</h2>
+            <form th:action='@{/resultat_entretient/save}' method='post'>
+                Pourcentage satisfaction: <input type='number'
+                    name="pourcentage_satisfaction" required /><br />
+                <button type='submit'>Valider</button>
+                <a th:href="@{/resultat_entretient}" style="width:92%;text-align: center;border-radius: 16px;">Retour</a>
+            </form>
+        </div>
+    </body>
 </html>

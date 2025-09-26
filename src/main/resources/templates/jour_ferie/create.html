@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer jour_ferie</h2>
+<form th:action='@{/jour_ferie/save}' th:object='${jour_ferie}' method='post'>
+name: <input type='text' th:field='*{name}'/><br/>
+date_ferie: <input type='text' th:field='*{date_ferie}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

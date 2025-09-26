@@ -160,3 +160,42 @@ INSERT INTO filiere (name) VALUES
 ('Droit'),
 ('Medecine'),
 ('Agronomie');
+
+
+-- ===========================
+-- Données de test : jour_ferie
+-- ===========================
+INSERT INTO jour_ferie (name, date_ferie) VALUES
+('Nouvel An', '2025-01-01'),
+('Fête du Travail', '2025-05-01'),
+('Indépendance', '2025-06-26'),
+('Noël', '2025-12-25');
+
+-- ===========================
+-- Données de test : horaire_travail
+-- ===========================
+INSERT INTO horaire_travail (jour_semaine) VALUES
+('MONDAY'),
+('TUESDAY'),
+('WEDNESDAY'),
+('THURSDAY'),
+('FRIDAY'),
+('SATURDAY'),
+('SUNDAY');
+
+-- ===========================
+-- Données de test : detail_horaire
+-- ===========================
+-- Exemple : du lundi au vendredi, 08h00-12h00 puis 14h00-17h00
+INSERT INTO detail_horaire (id_horaire, heure_debut, heure_fin) VALUES
+(1, '08:00', '12:00'),
+(1, '14:00', '17:00'),
+(2, '08:00', '12:00'),
+(2, '14:00', '17:00'),
+(3, '08:00', '12:00'),
+(3, '14:00', '17:00'),
+(4, '08:00', '12:00'),
+(4, '14:00', '17:00'),
+(5, '08:00', '12:00'),
+(5, '14:00', '17:00'),
+(6, '08:00', '12:00');

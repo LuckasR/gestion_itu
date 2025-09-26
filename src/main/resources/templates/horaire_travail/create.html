@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer horaire_travail</h2>
+<form th:action='@{/horaire_travail/save}' th:object='${horaire_travail}' method='post'>
+jour_semaine: <input type='text' th:field='*{jour_semaine}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

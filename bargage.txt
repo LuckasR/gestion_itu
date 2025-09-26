@@ -1,0 +1,50 @@
+    @GetMapping("/pdf/{venteId}")
+    public void exportPdf(@PathVariable Long venteId, HttpServletResponse response) throws Exception {
+        // 1️⃣ Récupérer les données
+        List<VueDetailsVentePdf> details = venteService.getDetailsByVenteId(venteId);
+
+        // 🔹 Total avec Double
+        Double totalCalcule = details.stream()
+                .map(VueDetailsVentePdf::getMontantCalcule)
+                .filter(Objects::nonNull)
+                .reduce(0.0, Double::sum);
+
+        // 🔹 Convertir en lettres
+        String totalEnLettres = NumberToWords.convertAmount(totalCalcule);
+
+        // 🔹 Générer numéro de facture dynamiquement
+        LocalDate dateVente = details.get(0).getDateVente().toLocalDate(); // ou LocalDateTime selon ton type
+        int year = dateVente.getYear();
+        String numeroFacture = year + "-00" + venteId; // format YYYY-00XXX
+
+        // 2️⃣ Préparer le contexte Thymeleaf
+        Context context = new Context();
+        context.setVariable("details", details);
+        context.setVariable("totalCalcule", totalCalcule);
+        context.setVariable("totalEnLettres", totalEnLettres);
+        context.setVariable("numeroFacture", numeroFacture); // envoyer le numéro de facture au template
+
+        // 3️⃣ Générer le HTML depuis le template
+        String htmlContent = templateEngine.process("details_vente_pdf", context);
+
+        // 4️⃣ Convertir en PDF avec Flying Saucer
+        ByteArrayOutputStream pdfStream = new ByteArrayOutputStream();
+        ITextRenderer renderer = new ITextRenderer();
+
+        String baseUrl = new File("src/main/resources/templates/").toURI().toURL().toString();
+        renderer.setDocumentFromString(htmlContent, baseUrl);
+        renderer.layout();
+        renderer.createPDF(pdfStream);
+
+        // 5️⃣ Préparer la réponse HTTP
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "inline; filename=facture_" + venteId + ".pdf");
+        response.setContentLength(pdfStream.size());
+
+        // 6️⃣ Écrire le PDF dans la réponse
+        try (OutputStream out = response.getOutputStream()) {
+            pdfStream.writeTo(out);
+            out.flush();
+        }
+    }
+

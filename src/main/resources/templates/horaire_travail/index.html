@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Liste</title></head>
+<body>
+<h2>Liste de horaire_travail</h2>
+<a th:href='@{/horaire_travail/create}'>Créer</a>
+<table border='1'>
+<thead><tr>
+<th>id</th>
+<th>jour_semaine</th>
+<th>Actions</th>
+</tr></thead>
+<tbody>
+<tr th:each='row : ${horaire_travails}'>
+<td th:text='${row.id}'></td>
+<td th:text='${row.jour_semaine}'></td>
+<td>
+<a th:href='@{/horaire_travail/edit/{id}(id=${row.id})}'>Edit</a> | <a th:href='@{/horaire_travail/delete/{id}(id=${row.id})}'>Delete</a>
+</td></tr>
+</tbody></table></body></html>

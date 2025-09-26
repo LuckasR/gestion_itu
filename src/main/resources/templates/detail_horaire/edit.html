@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Edit</title></head>
+<body>
+<h2>Edit detail_horaire</h2>
+<form th:action='@{/detail_horaire/update}' th:object='${detail_horaire}' method='post'>
+id: <input type='text' th:field='*{id}'/><br/>
+id_horaire: <select th:field='*{id_horaire}'>
+<option th:each='item : ${horaire_travails}' th:value='${item.id}' th:text='${item}' th:selected='${item.id} == ${detail_horaire.id_horaire.id}'></option>
+</select><br/>
+heure_debut: <input type='text' th:field='*{heure_debut}'/><br/>
+heure_fin: <input type='text' th:field='*{heure_fin}'/><br/>
+<button type='submit'>Mettre à jour</button></form></body></html>

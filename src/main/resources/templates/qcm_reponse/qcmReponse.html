@@ -1,4 +1,42 @@
+<style>
+    .result-container {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 8px;
+        background: #f9f9f9;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        font-family: Arial, sans-serif;
+        max-width: 400px;
+    }
+
+    .error {
+        color: #b71c1c;
+        font-weight: bold;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #f5c6cb;
+        background-color: #f8d7da;
+        border-radius: 5px;
+    }
+
+    
+    .score-label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .score {
+        font-size: 18px;
+        font-weight: bold;  
+        color: #1e88e5;
+    }
+</style>
+
+<div class="result-container">
     <p th:if="${error}" class="error" th:text="${error}"></p>
-    Voici votre score : 
-    <p th:if="${score}" class="score" th:text="${score}"></p>
- 
+
+    <span class="score-label">Voici votre score :</span>  
+    <span th:if="${score}" class="score" th:text="${score}"></span>  
+    <span> points sur </span>  
+    <span th:if="${scoreMax}" class="score" th:text="${scoreMax}"></span>
+</div>

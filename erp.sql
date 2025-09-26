@@ -57,9 +57,11 @@ create table societe (
   id serial primary key , 
   name varchar(100) ,
   nombre_qcm_test int default 1 ,
+  durre_entretient decimal(5,2) default 30.0 , -- en minute
+  pourcentage_passed int , 
   date_creation timestamp  default current_timestamp
 ) ; 
-
+ 
  -- Begin Gestion personnel
 create table admin  (
     id serial primary key , 
@@ -79,9 +81,10 @@ create table employee  (
 create table utilisateur  (
     id serial primary key , 
     username varchar(100) , 
-    password varchar(100)
+    password varchar(100) , 
+    email varchar(100)
 ) ; 
-
+alter table utilisateur add column email varchar(100) ;
 
 create table contrat_employee  (
     id serial primary key , 
@@ -151,7 +154,7 @@ create table candidature (
     date_candidature date not null default current_date,
     passed_test boolean default false ,
     entretien_planifie boolean default false ,
-    status_traitement_id int references status_traitement(id) 
+    (id)_id int references (id)(id) 
 ) ; 
 
 
@@ -184,11 +187,11 @@ SELECT
     d.skills, 
     d.experience_professionnelle,
     d.residence,
-    st.name AS status_traitement
+    st.name AS (id)
 FROM candidature c
 LEFT JOIN utilisateur u ON c.user_id = u.id
 LEFT JOIN annonce a ON c.annonce_id = a.id
-LEFT JOIN status_traitement st ON c.status_traitement_id = st.id
+LEFT JOIN (id) st ON c.(id)_id = st.id
 LEFT JOIN detail_candidature d ON c.id = d.candidature_id;
  
 
@@ -218,9 +221,19 @@ create table planing_entretient (
     id serial primary key , 
     employee_id int references employee(id) , -- Employee charger de l'entretient 
     candidature_id int references candidature(id) , 
-    siege_entreprise_id int references siege_entreprise(id) ,
-    date_entretient timestamp not null 
+    siege_entreprise_id int references siege_entreprise(id) 
 ) ;
+
+select an.title as "Title of Annonce" ,  usr.username as "Nom candidat" ,   extract(year from age(now(), dc.date_naissance)) as Age   , nv.name as diplome , qcm.score as "score_qcm sur 5"
+from planing_entretient as pe
+left join candidature as c on c.id = pe.candidature_id
+left join detail_candidature as dc on dc.candidature_id = c.id 
+left join annonce as an on an.id  = c.annonce_id  
+left join utilisateur as usr on  usr.id = c.user_id
+left join niveau_etude as nv on nv.id = dc.niveau_etude_id
+left join qcm_test as qcm on qcm.candidature_id = c.id 
+ ;
+ 
 
 create table resultat_entretient (
     id serial primary key ,
@@ -229,16 +242,20 @@ create table resultat_entretient (
     pourcentage_satisfaction decimal(10,2) , 
     date_resultat timestamp default current_timestamp
 ) ;
-
-
+ 
 create table scoring_candidature (
     id serial primary key , 
     candidature_id int references candidature(id) ,
     pourcentage_embauche decimal(10,2) , 
-    date_resultat  timestamp default current_timestamp
-) ;
-
-
+    date_resultat  timestamp default current_timestamp , 
+    status_id int references status_traitement(id)
+ ) ;
+ 
+create table signature_contrat (
+    id serial primary key , 
+    candidature_id int references candidature(id), 
+    status_id int references status_traitement(id)
+);  
 
 create table parametre (
     id serial primary key , 
@@ -253,3 +270,32 @@ create table detail_parametre (
     value int default 0 ,
     is_active boolean default false 
 ) ;
+ 
+CREATE TABLE jour_ferie (
+    id SERIAL PRIMARY KEY,
+    name varchar(250)  ,
+    date_ferie DATE  
+);
+
+CREATE TABLE horaire_travail (
+    id SERIAL PRIMARY KEY,
+    jour_semaine VARCHAR(20) NOT NULL -- Lundi, Mardi... 
+); 
+
+ 
+create table detail_horaire(
+    id SERIAL PRIMARY KEY,
+    id_horaire int references horaire_travail(id) ,
+    heure_debut TIME ,
+    heure_fin TIME 
+) ; 
+
+CREATE TABLE emploi_dt_entretient (
+    id SERIAL PRIMARY KEY,
+    planing_entretient_id INT REFERENCES planing_entretient(id) ,
+    tache_title VARCHAR(255) ,
+    date_entretient DATE NOT NULL,
+    heure_debut TIME NOT NULL,
+    heure_fin TIME NOT NULL 
+);
+ 

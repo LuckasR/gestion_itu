@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 @RequestMapping("/candidature")
@@ -32,6 +33,16 @@ public class CandidatureController {
         return "candidature/index";
     }
 
+
+    
+    @GetMapping("/entretiens")
+    public String getEntretiens(Model model) {
+        List<Object[]> entretiens = service.getEntretiensWithDetails();
+        model.addAttribute("entretiens", entretiens);
+        return "candidature/entretiens"; // correspond au fichier entretiens.html
+    }
+
+    
     @GetMapping("/create")
     public String createForm(Model model) {
         model.addAttribute("candidature", new Candidature());
@@ -75,6 +86,14 @@ public class CandidatureController {
         service.save(candidature);
         return "redirect:/candidature";
     }
+
+        @GetMapping("/detail/{candidature_id}")
+    public String findDetailCandidature(@PathVariable Integer candidature_id,Model model) {
+        Detail_candidature d = service.getDetail(candidature_id);
+        model.addAttribute("detail_candidature",d);
+        return "candidature/detailCandidature";
+    }
+
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {

@@ -24,10 +24,10 @@ public class MainController {
     @Autowired
     private UtilisateurService utilisateurService;
 
-    @GetMapping("/")
-    public String MenuPrincipale(Model model) {
-        return "main";
-    }
+        // @GetMapping("/")
+        // public String MenuPrincipale(Model model) {
+        //     return "main";
+        // }
 
     @GetMapping("/login")
     public String LoginForm(Model model) {
@@ -51,7 +51,7 @@ public String loginCheck(@RequestParam("username") String username,
         session.setAttribute("username", user.getUsername());
         session.setAttribute("role", "USER");
 
-        return "redirect:/utilisateur";
+        return "redirect:/";
     }
 
     if (emp != null) {
@@ -84,7 +84,7 @@ public String loginCheck(@RequestParam("username") String username,
     @GetMapping("/logout")
     public String logout(HttpSession session) {
       session.invalidate() ; 
-      return "redirect:/login" ; 
+      return "redirect:/candidature/connexion" ; 
     }
 
 

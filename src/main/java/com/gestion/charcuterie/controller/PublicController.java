@@ -21,19 +21,29 @@ public class PublicController {
     @Autowired
     private Type_contratService type_contratService;
 
+    @Autowired
+    private Signature_contratService signature_contratService;
 
     /**
      * Page d'accueil publique
      */
-    @GetMapping("/accueil")
+    @GetMapping("/")
     public String accueil() {
         return "public/accueil";
     }
 
+    @GetMapping("/mail")
+    public String mail(Model model) {
+        List<Signature_contrat> val = signature_contratService.getAll();
+        model.addAttribute("contratAsigne", val);
+        return "public/mail";
+    }
+
     /**
      * Page des offres d'emploi publiques avec gestion des filtres.
-     * Gère à la fois l'affichage initial (toutes les offres) et les résultats filtrés.
-     */
+     * Gère à la fois l'affichage initial (toutes les offres) et les résultats
+     * filtrés.
+    **/
     @GetMapping("/offres")
     public String offres(
             @RequestParam(required = false) Integer departementId,
@@ -45,19 +55,21 @@ public class PublicController {
         // Si le paramètre 'filtrer' n'est pas présent, ignorer tous les filtres
         List<Annonce> annonces;
         if (filtrer == null) {
-            annonces = annonceService.getAll();
-            // On ignore les filtres, inutile de réaffecter les variables
+            annonces = annonceService.getAll();// On ignore les filtres, inutile de réaffecter les variables
         } else {
             var annoncesStream = annonceService.getAll().stream();
             if (departementId != null) {
-                annoncesStream = annoncesStream.filter(a -> a.getDepartement() != null && a.getDepartement().getId().equals(departementId));
+                annoncesStream = annoncesStream
+                        .filter(a -> a.getDepartement() != null && a.getDepartement().getId().equals(departementId));
             }
             if (typeContratId != null) {
-                annoncesStream = annoncesStream.filter(a -> a.getType_contrat() != null && a.getType_contrat().getId().equals(typeContratId));
+                annoncesStream = annoncesStream
+                        .filter(a -> a.getType_contrat() != null && a.getType_contrat().getId().equals(typeContratId));
             }
             if (search != null && !search.trim().isEmpty()) {
                 String searchLower = search.toLowerCase();
-                annoncesStream = annoncesStream.filter(a -> a.getTitle() != null && a.getTitle().toLowerCase().contains(searchLower));
+                annoncesStream = annoncesStream
+                        .filter(a -> a.getTitle() != null && a.getTitle().toLowerCase().contains(searchLower));
             }
             annonces = annoncesStream.toList();
         }
@@ -66,8 +78,8 @@ public class PublicController {
         model.addAttribute("departements", departementService.getAll());
         model.addAttribute("type_contrats", type_contratService.getAll());
 
-    // Ajout de la date courante pour Thymeleaf
-    model.addAttribute("now", java.time.LocalDate.now());
+        // Ajout de la date courante pour Thymeleaf
+        model.addAttribute("now", java.time.LocalDate.now());
 
         // Conserver l'état des filtres dans la vue
         model.addAttribute("selectedDepartement", departementId);
@@ -88,17 +100,11 @@ public class PublicController {
         return "public/detail-offre";
     }
 
-    /**
-     * Page de contact
-     */
     @GetMapping("/contact")
     public String contact() {
         return "public/contact";
     }
 
-    /**
-     * Page de connexion
-     */
     @GetMapping("/connexion")
     public String connexion() {
         return "public/connexion";

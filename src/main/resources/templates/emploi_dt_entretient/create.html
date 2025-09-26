@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer emploi_dt_entretient</h2>
+<form th:action='@{/emploi_dt_entretient/save}' th:object='${emploi_dt_entretient}' method='post'>
+tache_title: <input type='text' th:field='*{tache_title}'/><br/>
+date_entretient: <input type='text' th:field='*{date_entretient}'/><br/>
+heure_debut: <input type='text' th:field='*{heure_debut}'/><br/>
+heure_fin: <input type='text' th:field='*{heure_fin}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

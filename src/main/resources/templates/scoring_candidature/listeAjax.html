@@ -1,0 +1,29 @@
+<table border='1' th:fragment="scoring_candidatures">
+    <thead><tr>
+            <th>Date de résultat</th>
+            <th>Nom</th>
+            <th>Titre de l'annonce</th>
+            <th>pourcentage d'embauche</th>
+            <th>Actions</th>
+        </tr></thead>
+    <tbody>
+
+        <!-- Si la liste est vide ou null -->
+        <tr
+            th:if="${scoring_candidatures == null or #lists.isEmpty(scoring_candidatures)}">
+            <td colspan="5" style="text-align:center;">Aucun
+                scoring de candidature trouvé</td>
+        </tr>
+        <tr th:each='row : ${scoring_candidatures}' th:if="${scoring_candidatures != null and !#lists.isEmpty(scoring_candidatures)}">
+            <td class="date"
+                th:text="${#temporals.format(row.date_resultat, 'dd/MM/yyyy HH:mm')}"></td>
+            <td th:text='${row.candidature.utilisateur.username}'></td>
+            <td th:text='${row.candidature.annonce.title}'></td>
+            <td th:text='${row.pourcentage_embauche}'></td>
+            <td>
+                <a
+                    th:href='@{/scoring_candidature/validate/{id}(id=${row.candidature.id})}'>Valider</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

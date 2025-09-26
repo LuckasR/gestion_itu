@@ -9,6 +9,7 @@
 <th>id</th>
 <th>name</th>
 <th>nombre_qcm_test</th>
+<th>durre entretient</th>
 <th>date_creation</th>
 <th>Actions</th>
 </tr></thead>
@@ -16,7 +17,9 @@
 <tr th:each='row : ${societes}'>
 <td th:text='${row.id}'></td>
 <td th:text='${row.name}'></td>
+<td th:text='${row.durre_entretient}'></td>
 <td th:text='${row.nombre_qcm_test}'></td>
+
 <td th:text='${row.date_creation}'></td>
 <td>
 <a th:href='@{/societe/edit/{id}(id=${row.id})}'>Edit</a> | <a th:href='@{/societe/delete/{id}(id=${row.id})}'>Delete</a>

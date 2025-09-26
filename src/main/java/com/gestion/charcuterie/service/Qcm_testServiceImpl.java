@@ -31,4 +31,8 @@ public class Qcm_testServiceImpl implements Qcm_testService {
     public List<Qcm_test> getByCandidatureId(int candidatureId) {
         return repo.findByCandidatureId(candidatureId);
     }
+
+    public  Qcm_test  getByCandidatureId1(int candidatureId) {
+        return repo.findByCandidatureId(candidatureId).get(0);
+    }
 }

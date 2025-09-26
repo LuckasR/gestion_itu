@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Liste</title></head>
+<body>
+<h2>Liste de emploi_dt_entretient</h2>
+<a th:href='@{/emploi_dt_entretient/create}'>Créer</a>
+<table border='1'>
+<thead><tr>
+<th>id</th>
+<th>tache_title</th>
+<th>date_entretient</th>
+<th>heure_debut</th>
+<th>heure_fin</th>
+<th>Actions</th>
+</tr></thead>
+<tbody>
+<tr th:each='row : ${emploi_dt_entretients}'>
+<td th:text='${row.id}'></td>
+<td th:text='${row.tache_title}'></td>
+<td th:text='${row.date_entretient}'></td>
+<td th:text='${row.heure_debut}'></td>
+<td th:text='${row.heure_fin}'></td>
+<td>
+<a th:href='@{/emploi_dt_entretient/edit/{id}(id=${row.id})}'>Edit</a> | <a th:href='@{/emploi_dt_entretient/delete/{id}(id=${row.id})}'>Delete</a>
+</td></tr>
+</tbody></table></body></html>

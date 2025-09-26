@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th='http://www.thymeleaf.org'>
+<head><title>Créer</title></head>
+<body>
+<h2>Créer detail_horaire</h2>
+<form th:action='@{/detail_horaire/save}' th:object='${detail_horaire}' method='post'>
+id_horaire: <select th:field='*{horaire_travail}' th:object='${detail_horaire}'>
+<option th:each='item : ${horaire_travails}' th:value='${item.id}' th:text='${item.name}'></option>
+</select><br/>
+heure_debut: <input type='text' th:field='*{heure_debut}'/><br/>
+heure_fin: <input type='text' th:field='*{heure_fin}'/><br/>
+<button type='submit'>Enregistrer</button></form></body></html>

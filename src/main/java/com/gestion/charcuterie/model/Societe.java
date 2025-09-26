@@ -1,6 +1,8 @@
 package com.gestion.charcuterie.model;
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,6 +22,28 @@ public class Societe {
     @Column(name = "date_creation", nullable = false)
     private LocalDateTime date_creation = LocalDateTime.now();
 
+    @Column(name = "durre_entretient", nullable = false)
+    private BigDecimal durre_entretient = BigDecimal.valueOf(30.0); // en minute
+    
+
+    @Column(name = "pourcentage_passed", nullable = false)
+    private BigDecimal pourcentage_passed ; // en minute
+    
+
+     
+    public BigDecimal getPourcentage_passed() {
+        return pourcentage_passed;
+    }
+    public void setPourcentage_passed(BigDecimal pourcentage_passed) {
+        this.pourcentage_passed = pourcentage_passed;
+    }
+    
+    public BigDecimal getDurre_entretient() {
+        return durre_entretient;
+    }
+    public void setDurre_entretient(BigDecimal durre_entretient) {
+        this.durre_entretient = durre_entretient;
+    }
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 

@@ -39,14 +39,24 @@ public class Detail_candidatureServiceImpl implements Detail_candidatureService 
         LocalDate naissDate = candidature.getDate_naissance();
         LocalDate currentDate = LocalDate.now();
         int ageCandidat = Period.between(candidature.getDate_naissance(), currentDate).getYears();
-        int ageRequis = annonce.getAge_requis();
+        int ageRequis = 0 ; 
+
+        if (annonce.getAge_requis() != null) {
+            ageRequis = annonce.getAge_requis() ;
+        } 
+        
         // Verification experience_professionnelle
         String val = candidature.getDuree_experience();
         if (val == null || val.isEmpty()) {
             val = "0";
         }
+        
         int dureeExperience = Integer.parseInt(val);
-        int experienceRequis = annonce.getExperience_requis();
+        int experienceRequis = 0 ; 
+        if (annonce.getExperience_requis() != null) {
+            experienceRequis = annonce.getExperience_requis() ;
+            
+        }
         // Dossier existant
         String cv = candidature.getCv();
         String lm = candidature.getLm();
@@ -54,15 +64,19 @@ public class Detail_candidatureServiceImpl implements Detail_candidatureService 
         if (dureeExperience < experienceRequis) {
             return false;
         }
+        System.out.println("exerience ok");
         if (ageCandidat < ageRequis) {
             return false;
         }
-        if ((idDiplomeAnnonce <= idDiplomeCandidat)) {
+        System.out.println("age ok");
+        if ((idDiplomeAnnonce > idDiplomeCandidat)) {
             return false;
         }
+        System.out.println("diplome ok");
         if (cv == null || lm == null || cin == null) {
             return false;
         }
+        System.out.println("dossier ok");
         return true;
     }
 

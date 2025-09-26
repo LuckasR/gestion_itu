@@ -23,8 +23,7 @@ create or replace view  v_candidature_annonce
         d.cv,
         d.lm,
         d.cin,
-        d.residence , 
-        pe.date_entretient
+        d.residence  
     FROM candidature c
     LEFT JOIN utilisateur u ON c.user_id = u.id
     LEFT JOIN annonce a ON c.annonce_id = a.id

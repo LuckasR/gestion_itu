@@ -1,0 +1,527 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contrat de Travail</title>
+    <style type="text/css">
+     body {
+            font-family: Arial, Helvetica, sans-serif; 
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f8fafc;
+            font-weight: 400;
+        }
+        
+        .document {
+            max-width: 820px;
+            margin: 30px auto;
+            background: #ffffff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .header-band {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            padding: 40px;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header-band::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4, #10b981);
+        }
+        
+        .document-title {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        
+        .document-subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .content {
+            padding: 50px;
+        }
+        
+        .section {
+            margin-bottom: 45px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e2e8f0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .parties-container {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 45px;
+        }
+        
+        .party-card {
+            flex: 1;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .party-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #3b82f6;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .party-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .field-group {
+            margin-bottom: 18px;
+        }
+        
+        .field-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        
+        .field-value {
+            font-size: 15px;
+            font-weight: 500;
+            color: #1e293b;
+            padding: 8px 12px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            display: block;
+            width: 100%;
+        }
+        
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .term-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        
+        .term-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+        }
+        
+        .term-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+        
+        .term-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .job-description {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-left: 4px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+        
+        .job-description h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0369a1;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .job-description p {
+            color: #1e293b;
+            line-height: 1.7;
+        }
+        
+        .articles-section {
+            background: #fafbfc;
+            border-radius: 8px;
+            padding: 35px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .article {
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .article:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .article-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+        
+        .article-content {
+            color: #475569;
+            line-height: 1.7;
+            text-align: justify;
+        }
+        
+        .contract-date {
+            text-align: center;
+            font-weight: 500;
+            color: #64748b;
+            margin: 40px 0;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .signatures-section {
+            display: flex;
+            gap: 50px;
+            margin-top: 60px;
+        }
+        
+        .signature-block {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .signature-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .signature-box {
+            height: 80px;
+            border-bottom: 2px solid #1e293b;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .signature-instruction {
+            font-size: 12px;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        .footer-info {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+        
+        /* Variables styling */
+        .variable {
+            background: transparent;
+            font-weight: inherit;
+            color: inherit;
+        }
+        
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                font-size: 12px;
+            }
+            
+            .document {
+                box-shadow: none;
+                margin: 0;
+                border-radius: 0;
+            }
+            
+            .content {
+                padding: 30px;
+            }
+            
+            .header-band {
+                background: #1e293b !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .parties-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .terms-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .signatures-section {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .content {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <div class="header-band">
+            <h1 class="document-title">CONTRAT DE TRAVAIL</h1>
+            <p class="document-subtitle">Contrat à Durée Indéterminée</p>
+        </div>
+        
+        <div class="content">
+            <!-- PARTIES CONTRACTANTES -->
+            <div class="section">
+                <h2 class="section-title">Parties Contractantes</h2>
+                <div class="parties-container">
+                    <div class="party-card">
+                        <h3 class="party-title">L'EMPLOYEUR</h3>
+                        <div class="field-group">
+                            <label class="field-label">Raison Sociale</label>
+                            <span class="field-value variable" th:text="${companyName}">ENTREPRISE EXEMPLE SAS</span>
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">SIRET</label>
+                            <span class="field-value variable" th:text="${siret}">123 456 789 00012</span>
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Code NAF</label>
+                            <span class="field-value variable" th:text="${nafCode}">6201Z</span>
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Adresse du Siège Social</label>
+                            <span class="field-value variable" th:text="${companyAddress}">123 Rue de l'Exemple, 75001 Paris</span>
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Représentée par</label>
+                            <span class="field-value variable" th:text="${employerRepresentative}">M. Jean DIRECTEUR</span>
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">En qualité de</label>
+                            <span class="field-value variable" th:text="${employerTitle}">Directeur Général</span>
+                        </div>
+                    </div>
+                    
+                    <div class="party-card">
+                        <h3 class="party-title">LE SALARIÉ</h3>
+                        <div class="field-group">
+                            <label class="field-label">Nom et Prénom</label>
+                            <span class="field-value variable" th:text="${employeeName}">Mme Marie DUPONT</span>
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Date de Naissance</label>
+                            <span class="field-value variable" th:text="${birthDate}">15 mars 1990</span>
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Numéro de Sécurité Sociale</label>
+                            <span class="field-value variable" th:text="${socialSecurityNumber}">2 90 03 75 123 456 78</span>
+                        </div>
+                        <div class="field-group">
+                            <label class="field-label">Adresse de Résidence</label>
+                            <span class="field-value variable" th:text="${employeeAddress}">456 Avenue du Travail, 75002 Paris</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CONDITIONS D'EMPLOI -->
+            <div class="section">
+                <h2 class="section-title">Conditions d'Emploi</h2>
+                <div class="terms-grid">
+                    <div class="term-card">
+                        <div class="term-label">Fonction</div>
+                        <div class="term-value variable" th:text="${jobTitle}">Développeur Full Stack</div>
+                    </div>
+                    <div class="term-card">
+                        <div class="term-label">Date de Prise de Fonction</div>
+                        <div class="term-value variable" th:text="${startDate}">1er avril 2024</div>
+                    </div>
+                    <div class="term-card">
+                        <div class="term-label">Rémunération Brute Mensuelle</div>
+                        <div class="term-value variable" th:text="${salary}">4 500,00 €</div>
+                    </div>
+                    <div class="term-card">
+                        <div class="term-label">Durée de Travail Hebdomadaire</div>
+                        <div class="term-value variable" th:text="${workingHours}">35 heures</div>
+                    </div>
+                </div>
+                
+                <div class="job-description">
+                    <h4>Description des Missions</h4>
+                    <p class="variable" th:text="${jobDescription}">
+                        Le salarié sera en charge du développement et de la maintenance des applications web de l'entreprise. 
+                        Il participera à l'analyse des besoins, la conception technique, le développement, les tests et la mise 
+                        en production des solutions digitales.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- CLAUSES CONTRACTUELLES -->
+            <div class="section">
+                <h2 class="section-title">Clauses Contractuelles</h2>
+                <div class="articles-section">
+                    <div class="article">
+                        <h4 class="article-title">ARTICLE 1 - OBJET DU CONTRAT</h4>
+                        <p class="article-content">
+                            Le présent contrat a pour objet l'embauche de <span class="variable" th:text="${employeeName}">Mme Marie DUPONT</span> 
+                            au poste de <span class="variable" th:text="${jobTitle}">Développeur Full Stack</span> à compter du 
+                            <span class="variable" th:text="${startDate}">1er avril 2024</span>.
+                        </p>
+                    </div>
+                    
+                    <div class="article">
+                        <h4 class="article-title">ARTICLE 2 - PÉRIODE D'ESSAI</h4>
+                        <p class="article-content">
+                            Une période d'essai de <span class="variable" th:text="${probationPeriod}">3 mois</span> est prévue, 
+                            renouvelable une fois par accord écrit des parties. Durant cette période, chacune des parties peut 
+                            rompre le contrat à tout moment sans préavis ni indemnité, sous réserve du respect des délais de 
+                            prévenance légaux.
+                        </p>
+                    </div>
+                    
+                    <div class="article">
+                        <h4 class="article-title">ARTICLE 3 - LIEU D'EXÉCUTION DU TRAVAIL</h4>
+                        <p class="article-content">
+                            Le salarié exercera ses fonctions au siège social de l'entreprise situé 
+                            <span class="variable" th:text="${workLocation}">${companyAddress}</span>. 
+                            Des déplacements professionnels en France ou à l'étranger pourront être demandés dans le cadre 
+                            de l'exercice des fonctions.
+                        </p>
+                    </div>
+                    
+                    <div class="article">
+                        <h4 class="article-title">ARTICLE 4 - RÉMUNÉRATION</h4>
+                        <p class="article-content">
+                            En contrepartie de son travail, le salarié percevra une rémunération brute mensuelle de 
+                            <span class="variable" th:text="${salary}">4 500,00 €</span>, payée mensuellement à terme échu. 
+                            Cette rémunération s'entend pour un travail effectif de <span class="variable" th:text="${workingHours}">35 heures</span> par semaine.
+                        </p>
+                    </div>
+                    
+                    <div class="article">
+                        <h4 class="article-title">ARTICLE 5 - OBLIGATIONS DE CONFIDENTIALITÉ</h4>
+                        <p class="article-content">
+                            Le salarié s'engage à observer la plus stricte confidentialité sur toutes les informations, 
+                            données, documents, méthodes, procédés, savoir-faire dont il aura connaissance dans l'exercice 
+                            de ses fonctions. Cette obligation perdurera après la cessation du contrat de travail.
+                        </p>
+                    </div>
+                    
+                    <div class="article">
+                        <h4 class="article-title">ARTICLE 6 - CONVENTION COLLECTIVE</h4>
+                        <p class="article-content">
+                            Le présent contrat est régi par les dispositions de la convention collective 
+                            <span class="variable" th:text="${collectiveAgreement}">SYNTEC</span> ainsi que par les 
+                            dispositions légales et réglementaires en vigueur.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contract-date">
+                <strong>Fait à <span class="variable" th:text="${city}">Paris</span>, le <span class="variable" th:text="${contractDate}">25 mars 2024</span></strong>
+            </div>
+            
+            <!-- SIGNATURES -->
+            <div class="signatures-section">
+                <div class="signature-block">
+                    <h4 class="signature-title">L'EMPLOYEUR</h4>
+                    <div class="signature-box"></div>
+                    <p class="signature-instruction">Signature et cachet de l'entreprise</p>
+                </div>
+                
+                <div class="signature-block">
+                    <h4 class="signature-title">LE SALARIÉ</h4>
+                    <div class="signature-box"></div>
+                    <p class="signature-instruction">Signature précédée de "Lu et approuvé"</p>
+                </div>
+            </div>
+            
+            <div class="footer-info">
+                <p>Document conforme aux dispositions du Code du travail français</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

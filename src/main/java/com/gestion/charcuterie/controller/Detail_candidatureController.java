@@ -66,9 +66,14 @@ public class Detail_candidatureController {
 
 @GetMapping("/create/{annonce_id}")
 public String createForm(@PathVariable Integer annonce_id, HttpSession session, Model model) {
+
+    Object userId  =  session.getAttribute("user_id" ) ; 
+    if (userId == null ) {
+        return "candidature/connexion" ; 
+    }
+
     session.setAttribute("annonce_id", annonce_id);
     session.setAttribute("user_id", 1);
-
     model.addAttribute("genres", genreService.getAll());
     model.addAttribute("niveau", niveau.getAll());
 
@@ -98,6 +103,7 @@ public String createForm(@PathVariable Integer annonce_id, HttpSession session, 
         c.setDate_candidature(LocalDate.now());
 
         // Gestion des fichiers
+        System.out.println("Tafiditra");
         try {
             if (cvFile != null && !cvFile.isEmpty()) {
                 String uploadDir = "uploads/cv/";
@@ -107,6 +113,7 @@ public String createForm(@PathVariable Integer annonce_id, HttpSession session, 
                 Files.write(path, cvFile.getBytes());
                 detailCandidature.setCv("cv/" + fileName);
             }
+            System.out.println("Cv Okk");
 
             if (lmFile != null && !lmFile.isEmpty()) {
                 String uploadDir = "uploads/lm/";
@@ -116,6 +123,7 @@ public String createForm(@PathVariable Integer annonce_id, HttpSession session, 
                 Files.write(path, lmFile.getBytes());
                 detailCandidature.setLm("lm/" + fileName);
             }
+            System.out.println("Lm Okk");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -125,22 +133,19 @@ public String createForm(@PathVariable Integer annonce_id, HttpSession session, 
         Status_traitement stTrue = status_traitementService.getById(2); // Conforme
         Status_traitement stFalse = status_traitementService.getById(3); // Non conforme
 
-        if (!service.checkConformite(a, detailCandidature)) {
+        if (service.checkConformite(a, detailCandidature) == true ) {
+            c.setStatus_traitement(stTrue) ;
+            // Sauvegarde
+            candidatureService.save(c);
+            detailCandidature.setCandidature(c);
+            service.save(detailCandidature);
+            return "redirect:/qcm_question/"+c.getId();
+        } else {
             c.setStatus_traitement(stFalse);
-        } else {
-            c.setStatus_traitement(stTrue);
-        }
-
-        // Sauvegarde
-        candidatureService.save(c);
-        detailCandidature.setCandidature(c);
-        service.save(detailCandidature);
-
-        if (!service.checkConformite(a, detailCandidature)) {
             return "redirect:/";
-        } else {
-            return "redirect:/qcm_test";
         }
+
+ 
     }
 
     // @PostMapping("/save")
